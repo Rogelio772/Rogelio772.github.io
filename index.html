@@ -8,6 +8,8 @@
    <style>
 /* General Settings */
 /* General Settings */
+
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -18,6 +20,7 @@ body {
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
+    
 }
 
 .hero {
@@ -53,7 +56,10 @@ body {
     color: #ffc107;
 }
 
+
+
 .section {
+    padding-bottom: 50px; /* Asegura espacio suficiente antes del pie */
     padding: 2rem;
     text-align: center;
     background-color: #ffffff;
@@ -63,7 +69,12 @@ body {
     border-radius: 8px;
     width: 90%;
     display: none; /* Ocultar por defecto */
+    min-height: auto; /* Permite que el contenido determine la altura */
+    max-height: none; /* Elimina restricciones en altura máxima */
+    overflow-y: visible; /* Muestra todo el contenido sin desplazamiento */
 }
+
+
 
 .section.active {
     display: block; /* Mostrar solo la sección activa */
@@ -100,6 +111,8 @@ body {
     flex-wrap: wrap;
 }
 
+
+
 .footer {
     text-align: center;
     padding: 1rem;
@@ -116,6 +129,44 @@ img {
     width: 100%;
     max-width: 250px; /* Reducir el tamaño máximo de las imágenes */
     height: auto;
+}
+
+#palabras-clave {
+    margin-bottom: 20px;
+}
+
+#lista-palabras-clave {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding: 0;
+    white-space: pre-line; /* Para saltos de línea */
+}
+
+#lista-palabras-clave li {
+    margin-bottom: 10px;
+}
+
+#lista-palabras-clave span.categoria {
+    font-weight: bold; /* Palabra clave en negrita */
+}
+
+
+.user-message {
+    color: #0066cc;
+    margin-bottom: 10px;
+}
+
+.ai-message {
+    color: #333;
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#chatbox {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 10px;
 }
 
 /* Media Queries */
@@ -182,8 +233,67 @@ img {
     }
 }
 
+  /* Conversación */
+.conversation {
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos se apilen */
+    align-items: flex-start; /* Alinea los elementos al principio */
+    gap: 15px; /* Espacio entre los mensajes */
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+
+
+/* Estilo para la solicitud del usuario */
+.user-request {
+    border: 1px solid #ccc; /* Borde similar al cuadro de respuesta */
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px; /* Espacio entre la solicitud y la respuesta */
+    white-space: pre-wrap; /* Mantiene el formato del texto */
+    width: auto; /* Se ajusta al contenido */
+    max-width: 600px; /* Limitar el ancho máximo */
+    min-width: 300px; /* Limitar el ancho mínimo */
+    height: auto; /* Ajuste dinámico de altura */
+    word-wrap: break-word; /* Evita desbordamientos de texto */
+    overflow-y: hidden; /* Evita el desplazamiento vertical */
+    display: block; /* Se comporta como un bloque */
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+}
+
+/* Estilo para la respuesta de IA */
+.response-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin-top: 10px; /* Espacio superior entre la respuesta y otros elementos */
+    white-space: pre-wrap; /* Mantiene el formato del texto */
+    width: auto; /* El cuadro de respuesta se ajustará al contenido, pero no al largo */
+    max-width: 600px; /* Limitar el ancho máximo */
+    min-width: 300px; /* Evitar que el cuadro sea muy pequeño */
+    height: auto; /* Ajuste dinámico de altura */
+    word-wrap: break-word; /* Evita desbordamientos de texto */
+    overflow-y: hidden; /* Evita el desplazamiento vertical */
+    display: block; /* Mantiene el cuadro de respuesta como bloque */
+    box-sizing: border-box; /* Asegura que el padding no se agregue al tamaño total */
+}
+
+
+
+
+/* Opcional: Ajustes para el cuadro de texto (entrada del usuario) */
+.input-box {
+    margin-top: 20px;  /* Deja espacio entre la respuesta y el cuadro de texto */
+    padding: 10px;
+    width: 100%;
+    max-width: 600px; /* Limita el ancho del cuadro de texto */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
 </style>
+
 
 </head>
 <body>
@@ -396,7 +506,7 @@ img {
     <ul>
         <li>Más de 3.5 kg.</li>
     </ul>
-    <img src="img/chihuahua.jpg" alt="Chihuahua">
+    <img src="img/Chihuahua.jpg" alt="Chihuahua">
     <b>Golden Retriever</b>
     <br>
     <br> <!-- Salto de línea -->
@@ -888,6 +998,7 @@ img {
         <img src="img/gestante.jpg" alt="Gestación">
         <div class="question-answer">
             <h3>1. ¿Cuánto dura la gestación?</h3>
+            <br>
             <b>Perros:</b>
             <ul>
                 <li>Dura entre 58 y 68 días, dependiendo de la raza y el número de cachorros.</li>
@@ -1302,7 +1413,7 @@ img {
 <!-- Sección Comedero -->
 <section id="comederoperro" class="section content">
     <h2>Juguete y Dispensador de Alimento</h2>
-    <img src="img/dispensaperro.png" alt="Dispensador para Alimento">
+    <img src="img/alimentoperro.jpg" alt="Dispensador para Alimento">
     
     <p>Estimula su inteligencia y su actividad física y resulta divertido para los perritos </p>
 
@@ -1330,7 +1441,7 @@ img {
 <!-- Sección Casa para mascotas hecha con tarimas de madera -->
 <section id="casamadera" class="section content">
     <h2>Casa para mascotas hecha con tarimas de madera</h2>
-    <img src="img/casamadera.jpg" alt="Casa de madera para perros">
+    <img src="img/perritocasa.jpg" alt="Casa de madera para perros">
 
     <h4>Materiales</h4>
     <ul>
@@ -1477,8 +1588,8 @@ img {
     <div>
         <button onclick="showContent('comederoaves')">Comedero Reciclado con Tubo de Cartón</button>
         <button onclick="showContent('casaaves')">Casa para Pájaros Reciclada</button>
-        <button onclick="showContent('tapajuguete')">Juguete con Tapas de Botellas</button>
-        <button onclick="showContent('interactivo')">Juguete Interactivo de Cartón</button>
+        <button onclick="showContent('tapajuguete')">Bebedero</button>
+        <button onclick="showContent('interactivo')">Casa con comida</button>
         <button onclick="showContent('juguetes')">Regresar</button>
     </div>
 </section>
@@ -1497,9 +1608,9 @@ img {
 
     <h4>Instrucciones</h4>
     <ol>
-        <li><strong>Corta el tubo de cartón:</strong> Divide el tubo en varias secciones.</li>
+        <li><strong>Limpia la Botella:</strong> Limpia una botella plastica .</li>
         <li><strong>Rellena el tubo:</strong> Coloca semillas o golosinas para aves dentro de cada sección.</li>
-        <li><strong>Haz agujeros en los extremos:</strong> Haz agujeros en ambos extremos del tubo y pasa un trozo de cuerda.</li>
+        <li><strong>Haz agujeros en los extremos:</strong> Haz agujeros en ambos extremos de la botella y pasa un trozo de cuerda, coloca objetos donde el ave se pueda posar y comer</li>
         <li><strong>Cuélgalo en la jaula:</strong> Ata un nudo en los extremos de la cuerda para colgar el comedero en la jaula.</li>
     </ol>
 
@@ -1531,22 +1642,22 @@ img {
 
 <!-- Sección Juguete con Tapas de Botellas -->
 <section id="tapajuguete" class="section content">
-    <h2>Juguete con Tapas de Botellas</h2>
+    <h2>Bebedero</h2>
     <img src="img/bebedero.jpg" alt="Juguete con tapas de botellas para aves">
 
     <h4>Materiales</h4>
     <ul>
-        <li>Tapas de botellas de plástico</li>
+        <li>Una botella plastica</li>
         <li>Cuerda o hilo fuerte</li>
-        <li>Pintura no tóxica (opcional)</li>
+        
     </ul>
 
     <h4>Instrucciones</h4>
     <ol>
-        <li><strong>Perfora las tapas:</strong> Haz un agujero en el centro de cada tapa de botella.</li>
-        <li><strong>Pinta las tapas (opcional):</strong> Si lo deseas, pinta las tapas con pintura no tóxica.</li>
-        <li><strong>Enlaza las tapas:</strong> Pasa la cuerda a través de los agujeros de las tapas y haz nudos entre ellas.</li>
-        <li><strong>Cuélgalo:</strong> Ata un nudo en ambos extremos de la cuerda para colgar el juguete en la jaula.</li>
+        <li><strong>Corta la botella:</strong> Haz un corte en la parte inferior de la botella para obtener dos piezas.</li>
+        <li><strong>Agujeros:</strong> A la parte de abajo de la botella hazle 4 agujeros por los cuales pasa un hilo, haz dos agujeros a la parte superior de la botella para colgarla</li>
+        <li><strong>Enlaza las partes:</strong> Con la cuerda ata la parte de abajo de la botella a la boca de esta.</li>
+        <li><strong>Cuélgalo:</strong> Ata el bebedero a la jaula o a un árbol.</li>
     </ol>
 
     <button onclick="showContent('avesjuguetes')">Regresar</button>
@@ -1555,7 +1666,7 @@ img {
 <!-- Sección Juguete Interactivo de Cartón -->
 <section id="interactivo" class="section content">
     <h2>Casa con comida</h2>
-    <img src="img/lata.jpg" alt="Juguete interactivo de cartón para aves">
+    <img src="img/lata.jpg" alt="Casa con comida">
 
     <h4>Materiales</h4>
     <ul>
@@ -1579,6 +1690,18 @@ img {
         <h2>Noticias</h2>
         <p>Entérate de las últimas novedades del mundo animal.</p>
         <img src="img/anuncio.jpg" alt="Campañas de vacunación">
+        <h2>Adopciones</h2>
+        <img src="img/adopcion.jpg" alt="Adopta una sonrisa">
+        <img src="img/adopcion2.jpg" alt="Adopta un nuevo amigo">
+        <h2>¡Se Busca!</h2>
+        <img src="img/sebusca.jpg" alt="Ayudenos a ubicarla">
+
+        <h2>Si deseas anunciar la adopción o búsqueda de un hogar para alguna mascota...</h2>
+    <p>Comunícate con nosotros</p>
+    <p>Correo electrónico: <h2>huellitasvip@gmail.com</h2></p>
+    <p>Número telefónico: <h2>7225276159</h2></p>
+    <h2>Por un aporte de $50MXN podrás publicar tu anuncio y ayudar a encontrar un nuevo hogar para tu compañero peludo...</h2>
+
     </section>
     
 <!-- Sección Foro -->
@@ -1592,17 +1715,32 @@ img {
         <p>&copy; 2024 Huellitas VIP. Todos los derechos reservados.</p>
     </footer>
 
- <!-- Sección IA -->
-    <section id="ia" class="section content">
-        <h2>Asistente de IA</h2>
-        <p>¡Hola! Soy tu asistente virtual. ¿En qué puedo ayudarte hoy?</p>
+<!-- Sección IA -->
+<section id="ia" class="section content">
+    <h2>Asistente de IA</h2>
+    <p>¡Hola! Soy tu asistente virtual. Debido a que estoy en fase Beta respondo a palabras clave ¿En qué puedo ayudarte hoy?</p>
+    <h3>Palabras clave que puedes utilizar:<br></h3>
+        <br>
+        
 
+    <!-- Palabras clave para temas -->
+    <div id="palabras-clave">
+        
+        <ul id="lista-palabras-clave">
+            <!-- Las palabras clave se llenarán dinámicamente con JavaScript -->
+        </ul>
+    </div>
+
+    <!-- Chat de IA -->
         <div class="ia-container" id="ia-chat">
             <div id="chat-box" class="message"></div>
             <textarea id="chatbox" placeholder="Escribe tu pregunta..."></textarea>
             <button onclick="sendMessage()">Enviar</button>
         </div>
     </section>
+
+
+
 
 <script>
     function showContent(id) {
@@ -1627,35 +1765,252 @@ img {
 
 
 
-        function sendMessage() {
-            const userMessage = document.getElementById('chatbox').value;
-            if (userMessage.trim() === "") return;
+// Lista de palabras clave y respuestas asociadas
 
-            // Mostrar el mensaje del usuario
-            const chatBox = document.getElementById('chat-box');
-            chatBox.innerHTML += `<div class="message">Tú: ${userMessage}</div>`;
+const palabrasClave = {
 
-            // Respuesta simple de la IA
-            const aiResponse = getAIResponse(userMessage);
-            chatBox.innerHTML += `<div class="message">IA: ${aiResponse}</div>`;
+    "alimentación": ["dieta", "alimentos tóxicos", "frecuencia comida", "comida casera"],
+    "salud": ["vacunas", "enfermedades comunes", "parásitos", "ejercicio", "emergencia"],
+    "higiene": ["baño", "corte de uñas", "dientes", "productos de limpieza"],
+    "entrenamiento": ["arenero", "comportamiento y socialización", "juegos"],
+    "reproducción": ["esterilizar"],
+    "adopción": ["primeros cuidados", "preparar casa"],
+    "otros": ["extraviada", "adaptación", "mascota anciana"]
+};
 
-            // Limpiar el campo de texto
-            document.getElementById('chatbox').value = '';
-            chatBox.scrollTop = chatBox.scrollHeight; // Desplazar al final
-        }
+// Función para obtener la respuesta de la IA según la consulta del usuario
+function getAIResponse(userMessage) {
+    // Convertir el mensaje del usuario a minúsculas para una búsqueda insensible a mayúsculas
+    userMessage = userMessage.toLowerCase();
 
-        function getAIResponse(userMessage) {
-            // Lógica simple de IA para generar respuestas
-            if (userMessage.includes("hola") || userMessage.includes("hi")) {
-                return "¡Hola! ¿Cómo puedo ayudarte hoy?";
-            } else if (userMessage.includes("salud")) {
-                return "Para la salud de tus mascotas, asegúrate de darles comida balanceada y visitas regulares al veterinario.";
-            } else if (userMessage.includes("juguetes")) {
-                return "Puedes hacer juguetes caseros con materiales reciclados como cartón, telas y madera.";
-            } else {
-                return "Lo siento, no entiendo tu pregunta. ¿Puedes ser más específico?";
+    // Comprobar si el mensaje contiene alguna palabra clave de las categorías
+    for (let categoria in palabrasClave) {
+        for (let palabra of palabrasClave[categoria]) {
+            if (userMessage.includes(palabra)) {
+                return obtenerRespuesta(categoria, palabra);
             }
         }
+    }
+
+    return "Lo siento, no tengo una respuesta para eso. ¿Te gustaría probar con otra palabra clave?";
+}
+
+// Función para obtener la respuesta según la categoría y palabra clave
+function obtenerRespuesta(categoria, palabra) {
+    switch (categoria) {
+        case "alimentación":
+            if (palabra === "dieta") {
+                return `
+                Dieta:<br>
+                - **Perros**: Dieta equilibrada con proteína, carbohidratos, grasas saludables, y micronutrientes.<br>
+                - **Gatos**: Alta en proteínas y grasas, con taurina y arginina esenciales.<br>
+                - **Hámsters**: Mezcla de semillas, frutas, verduras, y proteínas ocasionales (huevo cocido).<br>
+                - **Aves**: Depende de la especie. En general, semillas, frutas, verduras, y suplementos.<br>
+                `;
+            } else if (palabra === "alimentos tóxicos") {
+                return `
+                Alimentos tóxicos:<br>
+                - **Perros y gatos**: Chocolate, uvas, pasas, cebolla, ajo, y aguacate.<br>
+                - **Hámsters**: Cítricos, cebolla, ajo, almendras amargas.<br>
+                - **Aves**: Aguacate, cafeína, chocolate, y alimentos salados.<br>
+                `;
+            } else if (palabra === "frecuencia comida") {
+                return `
+                Frecuencia comida:<br>
+                - **Perros y gatos adultos**: 2 veces al día.<br>
+                - **Hámsters**: 1 vez al día, con snacks ocasionales.<br>
+                - **Aves**: Varias veces al día, comida fresca siempre disponible.<br>
+                `;
+            } else if (palabra === "comida casera") {
+                return `
+                Comida casera:<br>
+                Evitar alimentos procesados; priorizar comida cocida y balanceada.<br>
+                `;
+            }
+            break;
+        case "salud":
+            if (palabra === "vacunas") {
+                return `
+                Vacunas:<br>
+                - **Perros**: Rabia, parvovirus, moquillo, hepatitis.<br>
+                - **Gatos**: Rabia, leucemia felina, rinotraqueitis.<br>
+                - **Hámsters y aves**: No suelen requerir vacunas.<br>
+                `;
+            } else if (palabra === "enfermedades comunes") {
+                return `
+                Enfermedades comunes:<br>
+                - **Perros**: Moquillo, parvovirus, displasia de cadera.<br>
+                - **Gatos**: Leucemia felina, infecciones urinarias.<br>
+                - **Hámsters**: Infecciones respiratorias, abscesos.<br>
+                - **Aves**: Psitacosis, enfermedades respiratorias.<br>
+                `;
+            } else if (palabra === "parásitos") {
+                return `
+                Parásitos:<br>
+                - **Perros y gatos**: Pulgas, garrapatas, ácaros.<br>
+                - **Hámsters y aves**: Ácaros, aunque son menos comunes.<br>
+                `;
+            } else if (palabra === "ejercicio") {
+                return `
+                Ejercicio:<br>
+                - **Perros**: Paseos diarios según raza.<br>
+                - **Gatos**: Juegos con juguetes.<br>
+                - **Hámsters**: Rueda y túneles.<br>
+                - **Aves**: Espacio para volar o trepar.<br>
+                `;
+            } else if (palabra === "emergencia") {
+                return `
+                Emergencia:<br>
+                Saber identificar síntomas graves como letargo, vómitos, o dificultad para respirar e ir directamente por ayuda medica.<br>
+                `;
+            }
+            break;
+        case "higiene":
+            if (palabra === "baño") {
+                return `
+                Baño: <br>
+                - **Perros**: Cada 2-3 semanas.<br>
+                - **Gatos**: No se recomienda (ellos se limpian solos).<br>
+                - **Hámsters y aves**: Baños de arena o agua según la especie.<br>
+                `;
+            } else if (palabra === "corte de uñas") {
+                return `
+                Corte de uñas:<br>
+                - **Perros y gatos**: Cada 3-4 semanas.<br>
+                - **Hámsters y aves**: Solo si las uñas crecen en exceso.<br>
+                `;
+            } else if (palabra === "dientes") {
+                return `
+                Dientes:<br>
+                - **Perros y gatos**: Cepillado regular con pasta específica.<br>
+                - **Hámsters y aves**: Juguetes o bloques para desgastar dientes y pico.<br>
+                `;
+            } else if (palabra === "productos de limpieza") {
+                return `
+                Productos de limpieza:<br>
+                Usar productos específicos para mascotas; evitar los que contengan químicos tóxicos.<br>
+                `;
+            }
+            break;
+
+        // Continúa con las demás categorías (entrenamiento, reproducción, viajes, adopción, etc.) siguiendo el mismo formato.
+                case "entrenamiento":
+            if (palabra === "arenero") {
+                return `
+                Arenero:<br>
+                - **Perros**: Alfombrillas para cachorros.<br>
+                - **Gatos**: Limpieza diaria del arenero.<br>
+                `;
+            } else if (palabra === "comportamiento y socialización") {
+                return `
+                Comportamiento y socialización:<br>
+                - **Perros y gatos**: Exponer a nuevas personas y animales de forma positiva.<br>
+                - **Hámsters y aves**: Interactuar regularmente para reducir estrés.<br>
+                `;
+            } else if (palabra === "juegos") {
+                return `
+                Juegos y actividad:<br>
+                - **Perros y gatos**: Juguetes interactivos y de ejercicio.<br>
+                - **Hámsters y aves**: Ruedas, túneles, perchas y juguetes colgantes.<br>
+                `;
+            }
+            break;
+        case "reproducción":
+            if (palabra === "esterilizar") {
+                return `
+                Esterilizar/castrar:<br>
+                Recomendado en perros y gatos para evitar problemas de salud y controlar la población.<br>
+                `;
+            }
+            break;
+        case "adopción":
+            if (palabra === "primeros cuidados") {
+                return `
+                Primeros cuidados:<br>
+                Revisión veterinaria, establecer rutina alimenticia y de higiene.<br>
+                `;
+            } else if (palabra === "preparar casa") {
+                return `
+                Preparar casa:<br>
+                Asegurar espacio adecuado y libre de peligros.<br>
+                `;
+            }
+            break;
+        case "otros":
+            if (palabra === "extraviada") {
+                return `
+                Pérdida e identificación:<br>
+                Collares con placa y microchip en perros y gatos.<br>
+                `;
+            } else if (palabra === "adaptación") {
+                return `
+                Adaptación:<br>
+                Paciencia y consistencia en rutinas nuevas.<br>
+                `;
+            } else if (palabra === "mascota anciana") {
+                return `
+                Mascota anciana:<br>
+                Atención especial en salud, alimentación, y confort.<br>
+                `;
+            }
+            break;
+    }
+
+    return "Lo siento, no tengo una respuesta para eso. ¿Te gustaría probar con otra palabra clave?";
+}
+
+// Función para manejar el envío del mensaje
+function sendMessage() {
+    var userMessage = document.getElementById("chatbox").value;
+
+    // Si el usuario no escribió nada, no hacer nada
+    if (userMessage.trim() === "") {
+        return;
+    }
+
+    // Muestra el mensaje del usuario en el chat
+    var chatBox = document.getElementById("chat-box");
+    chatBox.innerHTML += `<div class="user-request">Tú: ${userMessage}</div>`;
+
+
+    // Llama a la función getAIResponse para obtener la respuesta
+    var aiResponse = getAIResponse(userMessage);
+
+    // Muestra la respuesta de la IA en el chat
+    chatBox.innerHTML += `<div class="ai-message">IA: ${aiResponse}</div>`;
+
+    // Limpia el campo de entrada del mensaje
+    document.getElementById("chatbox").value = "";
+
+    // Desplázate al final del chat para ver la última respuesta
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// Función para mostrar las palabras clave al cargar la página
+function mostrarPalabrasClave() 
+{
+    var listaPalabrasClave = document.getElementById("lista-palabras-clave");
+
+    // Limpiar la lista existente (en caso de que haya algún cambio dinámico)
+    listaPalabrasClave.innerHTML = "";
+
+    // Recorrer y agregar las palabras clave a la lista
+    for (let categoria in palabrasClave) {
+        var li = document.createElement("li");
+        li.textContent = categoria.charAt(0).toUpperCase() + categoria.slice(1) + ": " + palabrasClave[categoria].join(", ");
+        listaPalabrasClave.appendChild(li);
+    }
+}
+
+// Llamar a la función cuando la página cargue
+window.onload = function() {
+    mostrarPalabrasClave();
+};
+
+
+
+
+
 
 
    (function() { // DON'T EDIT BELOW THIS LINE
