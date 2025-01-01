@@ -1,0 +1,2072 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huellitas VIP</title>
+    <link rel="stylesheet" href="styles.css">
+   <style>
+/* General Settings */
+/* General Settings */
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #212529;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    
+}
+
+.hero {
+    background-color: #6c757d;
+    color: #fff;
+    text-align: center;
+    padding: 3rem 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    background-color: #343a40;
+    padding: 1rem;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.navbar a {
+    color: #f8f9fa;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.navbar a:hover {
+    background-color: #495057;
+    color: #ffc107;
+}
+
+
+
+.section {
+    padding-bottom: 50px; /* Asegura espacio suficiente antes del pie */
+    padding: 2rem;
+    text-align: center;
+    background-color: #ffffff;
+    margin: 1rem auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    border-radius: 8px;
+    width: 90%;
+    display: none; /* Ocultar por defecto */
+    min-height: auto; /* Permite que el contenido determine la altura */
+    max-height: none; /* Elimina restricciones en altura máxima */
+    overflow-y: visible; /* Muestra todo el contenido sin desplazamiento */
+}
+
+
+
+.section.active {
+    display: block; /* Mostrar solo la sección activa */
+}
+
+.section h2 {
+    color: #495057;
+    margin-bottom: 1rem;
+}
+
+.section button {
+    margin: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    background-color: #495057;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    width: auto; /* Botones no ocupan todo el ancho */
+}
+
+.section button:hover {
+    background-color: #343a40;
+    transform: translateY(-2px);
+}
+
+.section div {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #495057;
+    color: #f8f9fa;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+img {
+    display: block;
+    margin: 0 auto 20px auto; /* Centra y agrega espacio inferior */
+    width: 100%;
+    max-width: 250px; /* Reducir el tamaño máximo de las imágenes */
+    height: auto;
+}
+
+#palabras-clave {
+    margin-bottom: 20px;
+}
+
+#lista-palabras-clave {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding: 0;
+    white-space: pre-line; /* Para saltos de línea */
+}
+
+#lista-palabras-clave li {
+    margin-bottom: 10px;
+}
+
+#lista-palabras-clave span.categoria {
+    font-weight: bold; /* Palabra clave en negrita */
+}
+
+
+.user-message {
+    color: #0066cc;
+    margin-bottom: 10px;
+}
+
+.ai-message {
+    color: #333;
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#chatbox {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+/* Media Queries */
+
+/* Mobile (max-width: 600px) */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .section {
+        padding: 1rem;
+        margin: 0.5rem;
+    }
+
+    .section button {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        width: 100%;
+    }
+
+    .hero {
+        padding: 2rem 1rem;
+    }
+
+    img {
+        max-width: 90%; /* Ajustar imágenes al ancho de pantalla con un margen */
+    }
+}
+
+/* Tablets (601px - 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .section {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    .section button {
+        font-size: 1rem;
+        padding: 0.7rem;
+    }
+
+    img {
+        max-width: 350px; /* Mejor ajuste para tablets */
+    }
+}
+
+
+/* Large screens (1025px and up) */
+@media (min-width: 1025px) {
+    #gestacion h2 {
+        text-align: left !important;
+    }
+
+    .section {
+        padding: 2rem;
+        max-width: 900px;
+    }
+
+    img {
+        max-width: 500px; /* Ajuste para pantallas grandes */
+    }
+}
+
+
+  /* Conversación */
+.conversation {
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos se apilen */
+    align-items: flex-start; /* Alinea los elementos al principio */
+    gap: 15px; /* Espacio entre los mensajes */
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+
+
+/* Estilo para la solicitud del usuario */
+.user-request {
+    border: 1px solid #ccc; /* Borde similar al cuadro de respuesta */
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px; /* Espacio entre la solicitud y la respuesta */
+    white-space: pre-wrap; /* Mantiene el formato del texto */
+    width: auto; /* Se ajusta al contenido */
+    max-width: 600px; /* Limitar el ancho máximo */
+    min-width: 300px; /* Limitar el ancho mínimo */
+    height: auto; /* Ajuste dinámico de altura */
+    word-wrap: break-word; /* Evita desbordamientos de texto */
+    overflow-y: hidden; /* Evita el desplazamiento vertical */
+    display: block; /* Se comporta como un bloque */
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+}
+
+/* Estilo para la respuesta de IA */
+.response-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin-top: 10px; /* Espacio superior entre la respuesta y otros elementos */
+    white-space: pre-wrap; /* Mantiene el formato del texto */
+    width: auto; /* El cuadro de respuesta se ajustará al contenido, pero no al largo */
+    max-width: 600px; /* Limitar el ancho máximo */
+    min-width: 300px; /* Evitar que el cuadro sea muy pequeño */
+    height: auto; /* Ajuste dinámico de altura */
+    word-wrap: break-word; /* Evita desbordamientos de texto */
+    overflow-y: hidden; /* Evita el desplazamiento vertical */
+    display: block; /* Mantiene el cuadro de respuesta como bloque */
+    box-sizing: border-box; /* Asegura que el padding no se agregue al tamaño total */
+}
+
+
+
+
+/* Opcional: Ajustes para el cuadro de texto (entrada del usuario) */
+.input-box {
+    margin-top: 20px;  /* Deja espacio entre la respuesta y el cuadro de texto */
+    padding: 10px;
+    width: 100%;
+    max-width: 600px; /* Limita el ancho del cuadro de texto */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#gestacion h2 {
+    text-align: center !important; ; /* Cambia a 'left' si es lo que prefieres */
+}
+
+
+</style>
+
+
+</head>
+<body>
+    <header class="hero">
+        <h1>Bienvenidos a Huellitas VIP</h1>
+        <p>Todo lo que necesitas para cuidar a tus mascotas</p>
+    </header>
+
+    <nav class="navbar">
+        <a href="#" onclick="showContent('inicio')">Inicio</a>
+        <a href="#" onclick="showContent('salud')">Salud</a>
+        <a href="#" onclick="showContent('juguetes')">Juguetes Sustentables</a>
+        <a href="#" onclick="showContent('ia')">IA</a>
+        <a href="#" onclick="showContent('noticias')">Noticias</a>
+        <a href="#" onclick="showContent('foro')">Foro</a>
+    </nav>
+
+    <!-- Sección de Inicio -->
+    <section id="inicio" class="section content active">
+        <h2>Inicio</h2>
+        <p>Bienvenido a nuestro portal dedicado a tus amigos peludos.</p>
+        <img src="img/gato-perro-estan-sentados-al-lado-gato-perra_662214-523969.jpg" alt="Imagen de mascotas felices">
+
+    </section>
+
+    <!-- Sección Salud -->
+    <section id="salud" class="section content">
+        <h2>Salud</h2>
+        <p>Consejos para mantener a tus mascotas saludables.</p>
+        <img src="img/reabren-hospital-veterinario-en-ciudad-de-mexio.jpg" alt="Imagen de salud de mascotas">
+        <div>
+            <button onclick="showContent('imc')">IMC</button>
+            <button onclick="showContent('alimentacion')">Alimentación</button>
+            <button onclick="showContent('gestacion')">Gestación</button>
+        </div>
+    </section>
+
+   <!-- Sección IMC -->
+<section id="imc" class="section content">
+    <h2>IMC</h2>
+    <img src="img/58.jpg" alt="Imagen de salud de mascotas">
+    <div>
+        <button onclick="showContent('gatos')">Gatos</button>
+        <button onclick="showContent('perros')">Perros</button>
+        <button onclick="showContent('hamster')">Hamster</button>
+        <button onclick="showContent('aves')">Aves</button>
+        <button onclick="showContent('salud')">Regresar</button>
+    </div>
+</section>
+
+<!-- Sección Gatos -->
+<section id="gatos" class="section content">
+    <h2>Gatos</h2>
+    <img src="img/gatogris.jpg" alt="Gato">
+    
+    <strong>Información sobre el IMC de los gatos.</strong>
+    <b>Gatos Domésticos (mestizos)</b>
+    <ul>
+        <li>Desnutrición: menos de 3 kg.</li>
+        <li>Peso saludable: 3-5 kg.</li>
+        <li>Sobrepeso: más de 6 kg.</li>
+    </ul>
+    
+    <img src="img/mestizog1.jpg" alt="Gato Mestizo">
+    
+    <b>Siameses</b>
+    <ul>
+        <li>Desnutrición: menos de 3 kg.</li>
+        <li>Peso saludable: 2.5-4.5 kg.</li>
+        <li>Sobrepeso: más de 5 kg.</li>
+    </ul>
+    
+    <img src="img/siames.jpg" alt="Gato Siamés">
+    
+    <b>Maine Coon</b>
+    <ul>
+        <li>Desnutrición: menos de 5 kg.</li>
+        <li>Peso saludable: 5-9 kg (machos), 4-7 kg (hembras).</li>
+        <li>Sobrepeso: más de 10 kg.</li>
+    </ul>
+    
+    <img src="img/coon.jpg" alt="Maine Coon">
+    
+    <b>Persas</b>
+    <ul>
+        <li>Desnutrición: menos de 3 kg.</li>
+        <li>Peso saludable: 3-5.5 kg.</li>
+        <li>Sobrepeso: más de 6 kg.</li>
+    </ul>
+    
+    <img src="img/persa.jpg" alt="Persa">
+    
+    <b>Ragdolls</b>
+    <ul>
+        <li>Desnutrición: menos de 4.5 kg.</li>
+        <li>Peso saludable: 4.5-9 kg (machos), 4-7 kg (hembras).</li>
+        <li>Sobrepeso: más de 10 kg.</li>
+    </ul>
+    
+    <img src="img/ragdolls.jpg" alt="Ragdolls">
+    
+    <b>British Shorthair</b>
+    <ul>
+        <li>Desnutrición: menos de 3.5 kg.</li>
+        <li>Peso saludable: 4-8 kg.</li>
+        <li>Sobrepeso: más de 9 kg.</li>
+    </ul>
+    
+    <img src="img/british.jpg" alt="British Shorthair">
+    
+    <b>Siberiano</b>
+    <ul>
+        <li>Desnutrición: menos de 4 kg.</li>
+        <li>Peso saludable: 4.5-8 kg.</li>
+        <li>Sobrepeso: más de 9 kg.</li>
+    </ul>
+    
+    <img src="img/siberiano.jpg" alt="Siberiano">
+    
+    <b>Burmés</b>
+    <ul>
+        <li>Desnutrición: menos de 2.5 kg.</li>
+        <li>Peso saludable: 3-6 kg.</li>
+        <li>Sobrepeso: más de 7 kg.</li>
+    </ul>
+    
+    <img src="img/burmes.jpg" alt="Burmés">
+    
+    <b>Generalidades del Peso en Gatos</b>
+    <b>Desnutrición (PCC 1-2):</b>
+    <ul>
+        <li>Costillas y huesos de la pelvis prominentes.</li>
+        <li>Casi sin grasa corporal.</li>
+        <li>Abdomen hundido.</li>
+    </ul>
+    <b>Peso saludable (PCC 3):</b>
+    <ul>
+        <li>Costillas palpables sin una capa gruesa de grasa.</li>
+        <li>Cintura visible al observar desde arriba.</li>
+        <li>Abdomen levemente elevado.</li>
+    </ul>
+    <b>Sobrepeso/Obesidad (PCC 4-5):</b>
+    <ul>
+        <li>Costillas no palpables debido a la grasa.</li>
+        <li>Sin cintura visible.</li>
+        <li>Abdomen redondeado o colgante</li>
+    </ul>
+    <button onclick="showContent('imc')">Regresar</button>
+</section>
+
+    <!-- Sección Perros -->
+<section id="perros" class="section content">
+    <h2>Perros</h2>
+    <img src="img/perro1.jpg" alt="Perros">
+    
+    <strong>Información sobre el IMC de los Perros.</strong>
+     <br> <!-- Salto de línea -->
+      <br> <!-- Salto de línea -->
+    <b>Pastor Alemán</b>
+     <br> <!-- Salto de línea -->
+     <br> <!-- Salto de línea -->
+    <b>Desnutrición:</b>
+    <ul>
+        <li>Menos de 25 kg en machos adultos.</li>
+        <li>Menos de 20 kg en hembras adultas.</li>
+    </ul>
+    <b>Peso saludable:</b>
+    <ul>
+        <li>Machos: 30-40 kg.</li>
+        <li>Hembras: 22-32 kg.</li>
+    </ul>
+    <b>Sobrepeso:</b>
+    <ul>
+        <li>Más de 45 kg en machos.</li>
+        <li>Más de 35 kg en hembras.</li>
+    </ul>
+    <img src="img/pastor.jpg" alt="Pastor Alemán">
+
+    <b>Labrador Retriever</b>
+    <br>
+    <br> <!-- Salto de línea -->
+    <b>Desnutrición:</b>
+    <ul>
+        <li>Menos de 25 kg en machos adultos.</li>
+        <li>Menos de 20 kg en hembras adultas.</li>
+    </ul>
+
+    <b>Peso saludable:</b>
+    <ul>
+        <li>Machos: 29-36 kg.</li>
+        <li>Hembras: 25-32 kg.</li>
+    </ul>
+    <b>Sobrepeso:</b>
+    <ul>
+        <li>Más de 40 kg.</li>
+    </ul>
+    <img src="img/labrador.jpg" alt="Labrador Retriever">
+    <b>Chihuahua</b>
+    <br>
+    <br> <!-- Salto de línea -->
+    <b>Desnutrición:</b>
+    <ul>
+        <li>Menos de 1.5 kg.</li>
+    </ul>
+    <b>Peso saludable:</b>
+    <ul>
+        <li>1.8-3 kg.</li>
+    </ul>
+    <b>Sobrepeso:</b>
+    <ul>
+        <li>Más de 3.5 kg.</li>
+    </ul>
+    <img src="img/Chihuahua.jpg" alt="Chihuahua">
+    <b>Golden Retriever</b>
+    <br>
+    <br> <!-- Salto de línea -->
+    <b>Desnutrición:</b>
+    <ul>
+        <li>Menos de 27 kg en machos adultos.</li>
+        <li>Menos de 25 kg en hembras adultas.</li>
+    </ul>
+    <b>Peso saludable:</b>
+    <ul>
+        <li>Machos: 29-34 kg.</li>
+        <li>Hembras: 25-32 kg.</li>
+    </ul>
+    <b>Sobrepeso:</b>
+    <ul>
+        <li>Más de 38 kg.</li>
+    </ul>
+    <img src="img/golden.jpg" alt="Golden Retriever">
+    <b>Perros Criollos (Mestizos)</b>
+    <br>
+    <br> <!-- Salto de línea -->
+    <b>Pequeños (tipo Chihuahua, Poodle Toy, etc.)</b>
+    <ul>
+        <li><b>Desnutrición:</b> Menos de 3 kg.</li>
+        <li><b>Peso saludable:</b> 3-6 kg.</li>
+        <li><b>Sobrepeso:</b> Más de 6.5 kg.</li>
+    </ul>
+    <b>Medianos (tipo Beagle, Cocker Spaniel, etc.)</b>
+    <ul>
+        <li><b>Desnutrición:</b> Menos de 10 kg.</li>
+        <li><b>Peso saludable:</b> 10-18 kg.</li>
+        <li><b>Sobrepeso:</b> Más de 20 kg.</li>
+    </ul>
+    <b>Grandes (tipo Labrador, Pastor Alemán, etc.)</b>
+    <ul>
+        <li><b>Desnutrición:</b> Menos de 20 kg.</li>
+        <li><b>Peso saludable:</b> 20-40 kg.</li>
+        <li><b>Sobrepeso:</b> Más de 45 kg.</li>
+    </ul>
+    <b>Gigantes (tipo Gran Danés, Mastín, etc.)</b>
+    <ul>
+        <li><b>Desnutrición:</b> Menos de 40 kg.</li>
+        <li><b>Peso saludable:</b> 40-80 kg.</li>
+        <li><b>Sobrepeso:</b> Más de 90 kg.</li>
+    </ul>
+    <img src="img/criollo.jpg" alt="Criollos">
+    <b>Boxer</b>
+    <br>
+    <b>Desnutrición:</b>
+    <ul>
+        <li>Menos de 25 kg en machos adultos.</li>
+        <li>Menos de 20 kg en hembras adultas.</li>
+    </ul>
+    <b>Peso saludable:</b>
+    <ul>
+        <li>Machos: 27-32 kg.</li>
+        <li>Hembras: 25-30 kg.</li>
+    </ul>
+    <b>Sobrepeso:</b>
+    <ul>
+        <li>Más de 35 kg.</li>
+    </ul>
+    <img src="img/boxer.jpg" alt="Boxer">
+    <b>Dachshund (Salchicha)</b>
+    <br>
+    <br> <!-- Salto de línea -->
+    <b>Desnutrición:</b>
+    <ul>
+        <li>Menos de 4 kg.</li>
+    </ul>
+    <b>Peso saludable:</b>
+    <ul>
+        <li>5-12 kg (según el tipo: miniatura o estándar).</li>
+    </ul>
+    <b>Sobrepeso:</b>
+    <ul>
+        <li>Más de 13 kg.</li>
+    </ul>
+    <img src="img/salchicha.jpg" alt="Salchicha">
+    <b>Husky Siberiano</b>
+    <br>
+    <br>
+    <b>Desnutrición:</b>
+    <ul>
+        <li>Menos de 15 kg en machos.</li>
+        <li>Menos de 13 kg en hembras.</li>
+    </ul>
+    <b>Peso saludable:</b>
+    <ul>
+        <li>Machos: 20-27 kg.</li>
+        <li>Hembras: 16-23 kg.</li>
+    </ul>
+    <b>Sobrepeso:</b>
+    <ul>
+        <li>Más de 30 kg.</li>
+    </ul>
+    <img src="img/husky.jpg" alt="Husky">
+    <b>Evaluación General de Condición Corporal</b>
+    <br>
+    <b>Desnutrición:</b> 
+    <ul>
+        <li>Costillas y huesos visibles</li>
+        <li>Poca o ninguna grasa corporal</li>
+        <li>Pérdida de masa muscular.</li>
+    </ul>
+    <br>
+        <b>Peso saludable:</b>
+    <ul>
+        <li>Costillas palpables</li>
+        <li>Cintura visible desde arriba</li>
+        <li>Abdomen ligeramente elevado</li>
+    </ul>
+    <br>
+    <b>Sobrepeso:</b>
+    <ul>
+        <li>Capa de grasa gruesa sobre las costillas</li>
+        <li>Cintura ausente o muy leve</li>
+        <li>Abdomen plano o colgante</li>
+    </ul>
+        <button onclick="showContent('imc')">Regresar</button>
+    </section>
+
+<!-- Sección Hámsters -->
+<section id="hamster" class="section content">
+    <h2>Hámsters</h2>
+    <img src="img/hasmter.jpg" alt="Hámsters">
+    
+    <strong>Tipos Comunes y Peso Saludable</strong>
+    <br>
+    <br>
+    
+    <b>Hámster Sirio (dorados o comunes)</b>
+    <br>
+    <br>
+    <b>Desnutrición:</b>
+    <ul>
+        <li>Menos de 80 g (costillas visibles y poco músculo).</li>
+    </ul>
+    <b>Peso saludable:</b>
+    <ul>
+        <li>100-150 g.</li>
+    </ul>
+    <b>Sobrepeso:</b>
+    <ul>
+        <li>Más de 170 g (grasa acumulada en abdomen y mejillas).</li>
+    </ul>
+    <img src="img/sirio.jpg" alt="Hámster Sirio">
+    
+    <b>Hámster Enano Ruso</b>
+    <br>
+    <br>
+    <b>Desnutrición:</b>
+    <ul>
+        <li>Menos de 20 g.</li>
+    </ul>
+    <b>Peso saludable:</b>
+    <ul>
+        <li>30-50 g.</li>
+    </ul>
+    <b>Sobrepeso:</b>
+    <ul>
+        <li>Más de 60 g.</li>
+    </ul>
+    <img src="img/ruso.jpg" alt="Hámster Enano Ruso">
+    
+    <b>Hámster Roborowski</b>
+    <br>
+    <br>
+    <b>Desnutrición:</b>
+    <ul>
+        <li>Menos de 15 g.</li>
+    </ul>
+    <b>Peso saludable:</b>
+    <ul>
+        <li>20-25 g.</li>
+    </ul>
+    <b>Sobrepeso:</b>
+    <ul>
+        <li>Más de 30 g.</li>
+    </ul>
+    <img src="img/hasmter.jpg" alt="Hámster Roborowski">
+    
+    <b>Hámster Chino</b>
+    <br>
+    <br>
+    <b>Desnutrición:</b>
+    <ul>
+        <li>Menos de 20 g.</li>
+    </ul>
+    <b>Peso saludable:</b>
+    <ul>
+        <li>30-45 g.</li>
+    </ul>
+    <b>Sobrepeso:</b>
+    <ul>
+        <li>Más de 50 g.</li>
+    </ul>
+    <img src="img/chino.jpg" alt="Hámster Chino">
+
+    <b>Cuidados Básicos</b>
+    <br>
+    <b>Dieta:</b>
+    <ul>
+        <li>Semillas, pellets especiales, frutas y verduras.</li>
+        <li>Evitar alimentos grasos o azucarados.</li>
+        
+    </ul>
+    <b>Ejercicio:</b>
+    <ul>
+        <li>Proveer una rueda para correr y túneles para explorar.</li>
+    </ul>
+        <b>Hábitat:</b>
+    <ul>
+        <li>Jaulas amplias con sustrato adecuado para cavar.</li>
+        <li>Evitar corrientes de aire y temperaturas extremas.</li>
+    </ul>
+        <b>Salud:</b>
+    <ul>
+        <li>Observar dientes (que no crezcan demasiado)</li>
+        <li>Revisar piel por posibles ácaros o lesiones.</li>
+    </ul>
+        <button onclick="showContent('imc')">Regresar</button>
+    </section>
+
+<!-- Sección Aves -->
+<section id="aves" class="section content">
+    <h2>Aves Comunes</h2>
+    <img src="img/aves.jpg" alt="Aves Comunes">
+    
+    <strong>Tipos Comunes y Peso Saludable</strong>
+    <br>
+    <br>
+    
+    <b>Periquitos Australianos</b>
+    <br>
+    <br>
+    <b>Desnutrición:</b>
+    <ul>
+        <li>Menos de 25 g (huesos del pecho prominentes).</li>
+    </ul>
+    <b>Peso saludable:</b>
+    <ul>
+        <li>30-40 g.</li>
+    </ul>
+    <b>Sobrepeso:</b>
+    <ul>
+        <li>Más de 45 g (grasa acumulada en abdomen).</li>
+    </ul>
+    <img src="img/periquito.jpg" alt="Periquitos Australianos">
+    
+    <b>Canarios</b>
+    <br>
+    <br>
+    <b>Desnutrición:</b>
+    <ul>
+        <li>Menos de 18 g.</li>
+    </ul>
+    <b>Peso saludable:</b>
+    <ul>
+        <li>20-25 g.</li>
+    </ul>
+    <b>Sobrepeso:</b>
+    <ul>
+        <li>Más de 28 g.</li>
+    </ul>
+    <img src="img/canario.jpg" alt="Canarios">
+    
+    <b>Cacatúas Ninfa (Cockatiel)</b>
+    <br>
+    <br>
+    <b>Desnutrición:</b>
+    <ul>
+        <li>Menos de 70 g.</li>
+    </ul>
+    <b>Peso saludable:</b>
+    <ul>
+        <li>80-120 g.</li>
+    </ul>
+    <b>Sobrepeso:</b>
+    <ul>
+        <li>Más de 130 g.</li>
+    </ul>
+    <img src="img/cacatua.jpg" alt="Cacatúas Ninfa">
+    
+    <b>Agapornis (Lovebirds)</b>
+    <br>
+    <br>
+    <b>Desnutrición:</b>
+    <ul>
+        <li>Menos de 35 g.</li>
+    </ul>
+    <b>Peso saludable:</b>
+    <ul>
+        <li>40-60 g.</li>
+    </ul>
+    <b>Sobrepeso:</b>
+    <ul>
+        <li>Más de 65 g.</li>
+    </ul>
+    <img src="img/agapornis.jpg" alt="Agapornis">
+    
+    <b>Loros Pequeños (como los Amazonenses)</b>
+    <br>
+    <br>
+    <b>Desnutrición:</b>
+    <ul>
+        <li>Menos de 280 g.</li>
+    </ul>
+    <b>Peso saludable:</b>
+    <ul>
+        <li>300-450 g.</li>
+    </ul>
+    <b>Sobrepeso:</b>
+    <ul>
+        <li>Más de 500 g.</li>
+    </ul>
+    <img src="img/loro.jpg" alt="Loros Pequeños">
+    
+    <b>Cuidados Básicos</b>
+    <br>
+    <b>Dieta:</b>
+    <ul>
+        <li>Semillas de alta calidad, frutas frescas (manzanas, plátanos) y verduras (zanahorias, espinacas).</li>
+        <li>Evitar aguacate, chocolate y cafeína.</li>
+    </ul>
+    <b>Ejercicio:</b>
+    <ul>
+        <li>Proveer tiempo fuera de la jaula para volar y jugar.</li>
+        <li>Juguetes como cuerdas o espejos pueden estimular su mente.</li>
+    </ul>
+    <b>Hábitat:</b>
+    <ul>
+        <li>Jaulas amplias con perchas de diferentes tamaños y materiales.</li>
+        <li>Mantenerlas limpias y bien ventiladas.</li>
+    </ul>
+    <b>Salud:</b>
+    <ul>
+        <li>Observar plumas brillantes y ojos claros.</li>
+        <li>Evitar obesidad mediante una dieta balanceada y suficiente actividad.</li>
+    </ul>
+    <button onclick="showContent('imc')">Regresar</button>
+</section>
+
+
+    <!-- Sección Alimentación -->
+    <section id="alimentacion" class="section content">
+        <h2>Alimentación</h2>
+        <img src="img/mascotasc.jpg" alt="Mascotas Comiendo">
+        <p>Consejos para una dieta equilibrada.</p>
+            <button onclick="showContent('gatos1')">Gatos</button>
+            <button onclick="showContent('perros1')">Perros</button>
+            <button onclick="showContent('hamster1')">Hamster</button>
+            <button onclick="showContent('aves1')">Aves</button>
+            <button onclick="showContent('salud')">Regresar</button>
+        </div>
+    </section>
+
+    <!-- Sección Gatos -->
+    <section id="gatos1" class="section content">
+        <h2>Gatos</h2>
+        <img src="img/gato.jpg" alt="Gatos">
+        
+        <strong>Dieta Básica</strong>
+        <br>
+        <br>
+        <p>Son animales carnívoros por lo que necesitan una dieta alta en proteínas</p>
+        <b>Alimentos Recomendados</b>
+        <ul>
+            <li><b>Comida comercial:</b> Croquetas de buena calidad con carne como primer ingrediente.</li>
+            <li><b>Comida húmeda:</b> Alternativa rica en proteínas y adecuada para hidratación.</li>
+            <li><b>Carnes magras cocidas:</b> Pollo, pavo o pescado sin huesos ni espinas (bien cocidos).</li>
+            <li><b>Agua fresca:</b> Siempre disponible, ya que son propensos a problemas renales.</li>
+        </ul>
+        
+        <b>Evitar</b>
+        <ul>
+            <li>Cebolla</li>
+            <li>Ajo</li>
+            <li>Chocolate</li>
+            <li>Uvas</li>
+            <li>Pasas</li>
+            <li>Alimentos condimentados</li>
+            <li>Leche (Algunos son intolerantes a la lactosa)</li>
+        </ul>
+        
+        <button onclick="showContent('alimentacion')">Regresar</button>
+    </section>
+
+
+    <!-- Sección Perros -->
+    <section id="perros1" class="section content">
+        <h2>Perros</h2>
+        <img src="img/perro.jpg" alt="Perros">
+        
+        <strong>Dieta Básica</strong>
+        <br>
+        <br>
+        <p>Son omnívoros y necesitan una combinación de proteínas, grasas, carbohidratos, vitaminas y minerales.</p>
+        
+        <b>Alimentos Recomendados</b>
+        <ul>
+            <li><b>Comida comercial:</b> Croquetas de calidad según su etapa (cachorro, adulto, senior).</li>
+            <li><b>Comida casera (opcional):</b> Carnes magras cocidas, arroz integral, zanahorias, calabaza, brócoli (en pequeñas cantidades).</li>
+            <li><b>Snacks naturales:</b> Trozos de frutas como manzanas (sin semillas) o plátano.</li>
+            <li><b>Agua fresca:</b> En todo momento.</li>
+        </ul>
+        
+        <b>Evitar</b>
+        <ul>
+            <li>Cebolla</li>
+            <li>Ajo</li>
+            <li>Chocolate</li>
+            <li>Uvas</li>
+            <li>Pasas</li>
+            <li>Alimentos condimentados o fritos</li>
+            <li>Huesos cocidos (pueden astillarse)</li>
+        </ul>
+        
+        <button onclick="showContent('alimentacion')">Regresar</button>
+    </section>
+
+
+    <!-- Sección Hámsters -->
+    <section id="hamster1" class="section content">
+        <h2>Hámsters</h2>
+        <img src="img/hamsterc.jpg" alt="Hámsters">
+        
+        <strong>Dieta Básica</strong>
+        <br>
+        <br>
+        <p>Son omnívoros, pero su dieta debe ser predominantemente vegetal con proteínas ocasionales.</p>
+        
+        <b>Alimentos Recomendados</b>
+        <ul>
+            <li><b>Mezclas comerciales:</b> Específicas para hámsters, con semillas y granos balanceados.</li>
+            <li><b>Vegetales frescos:</b> Zanahorias, espinacas, brócoli, calabacín (en pequeñas porciones para evitar diarreas).</li>
+            <li><b>Frutas frescas:</b> Manzanas (sin semillas), plátano (con moderación debido al azúcar).</li>
+            <li><b>Proteínas:</b> Huevo cocido o pequeños trozos de pollo cocido ocasionalmente.</li>
+            <li><b>Agua fresca:</b> En un bebedero limpio y accesible.</li>
+        </ul>
+        <b>Evitar</b>
+        <ul>
+            <li>Cebolla</li>
+            <li>Ajo</li>
+            <li>Chocolate</li>
+            <li>Frutas citricas</li>
+            <li>Papas</li>
+            <li>Alimentos grasosos</li>
+           <li>Dulces</li>
+        </ul>
+            <button onclick="showContent('alimentacion')">Regresar</button>
+        </section>
+
+    <!-- Sección Aves -->
+    <section id="aves1" class="section content">
+        <h2>Aves (domésticas, como periquitos o canarios)</h2>
+        <img src="img/avesc.jpg" alt="Aves domésticas">
+        
+        <strong>Dieta Básica</strong>
+        <br>
+        <br>
+        <p>Varía según la especie, pero generalmente necesitan una dieta basada en semillas, frutas y vegetales.</p>
+        
+        <b>Alimentos Recomendados</b>
+        <ul>
+            <li><b>Mezclas de semillas:</b> Avena, mijo, alpiste (para periquitos y canarios).</li>
+            <li><b>Frutas frescas:</b> Manzana, pera, uvas (sin semillas).</li>
+            <li><b>Vegetales frescos:</b> Espinacas, zanahorias, lechuga romana.</li>
+            <li><b>Suplementos de calcio:</b> Como hueso de sepia.</li>
+            <li><b>Agua fresca:</b> Siempre disponible.</li>
+        </ul>
+        
+        <b>Evitar</b>
+        <ul>
+            <li>Aguacate (tóxico)</li>
+            <li>Chocolate</li>
+            <li>Cafeina</li>
+            <li>Papas</li>
+            <li>Alimentos grasosos o salados</li>
+        </ul>
+        
+        <button onclick="showContent('alimentacion')">Regresar</button>
+    </section>
+
+
+    <!-- Sección Gestación -->
+    
+
+    <section id="gestacion" class="section content">
+        <h2>Gestación</h2>
+        <img src="img/gestando.jpg" alt="Imagen de gestación">
+        <p>Consejos para mantener comoda y segura a tu macota durante su periodo de gestación.</p>
+            <button onclick="showContent('primerap')">¿Cuánto dura la gestación?</button>
+            <button onclick="showContent('segundap')">¿Cómo puedo saber si mi mascota esta embarazada?</button>
+            <button onclick="showContent('tercerap')">¿Debo cambiar su alimentación durante el embarazo?</button>
+            <button onclick="showContent('cuartap')">¿Cómo debo prepararme para el parto?</button>
+            <button onclick="showContent('quintap')">¿Qué hago si hay complicaciones durante el parto?</button>
+            <button onclick="showContent('sextap')">¿Cómo cuido a la madre y las crías después del parto?</button>
+            <button onclick="showContent('salud')">Regresar</button>
+        </div>
+    </section>
+
+        <!-- Sección Aves -->
+    <section id="primerap" class="section content">
+        <h2>Saber cuanto dura la gestación en tu mascota es muy importante para poder tomar las medidas adecuadas</h2>
+        <img src="img/cuantodura.jpg" alt="gestacion">
+        
+        <b>Perros:</b>
+            <ul>
+                <li>Dura entre 58 y 68 días, dependiendo de la raza y el número de cachorros.</li>
+                <li>Las razas más pequeñas suelen tener gestaciones más cortas que las grandes.</li>
+            </ul>
+
+            <b>Gatos:</b>
+            <ul>
+                <li>Entre 63 y 67 días.</li>
+                <li>Es común que las gatas puedan dar a luz hasta 5-6 gatitos en una sola camada.</li>
+            </ul>
+
+            <b>Hámsters:</b>
+            <ul>
+                <li>Su gestación es muy corta, de solo 15-22 días, dependiendo de la especie</li>
+            </ul>
+
+            <b>Aves:</b>
+            <p>No tienen "gestación", se cuenta el tiempo desde que ponen los huevos hasta que eclosionan</p>
+            <ul>
+                <li>Periquitos: 17-20 días.</li>
+                <li>Canarios: 13-15 días.</li>
+                <li>Loros pequeños: 21-30 días.</li>
+            </ul>
+        </div>
+        
+        <button onclick="showContent('gestacion')">Regresar</button>
+    </section>
+
+
+            <!-- Sección Aves -->
+    <section id="segundap" class="section content">
+        <h2>Saber identifcar si tu mascota esta en periodo de gestación es de gran utilidad para tomar las medidas adecuadas</h2>
+      <img src="img/comopuedo.jpg" alt="Mascotas en gestación">
+
+        <b>Perros y Gatos</b>
+        <ul>
+            <li><b>Aumento del abdomen:</b> El abdomen se agranda a medida que avanza la gestación.</li>
+            <li><b>Cambios en las mamas:</b> Más grandes, rosadas, pueden secretar leche en etapas avanzadas.</li>
+            <li><b>Comportamiento:</b> Letargo o comportamiento más cariñoso.</li>
+            <li><b>En perros:</b> Puede haber una ligera secreción vaginal.</li>
+            <li><b>Confirmación:</b> Una ecografía a los 21-25 días o radiografías después de 45 días confirmarán la gestación.</li>
+        </ul>
+
+        <b>Hámsters</b>
+        <ul>
+            <li><b>Aumento del tamaño abdominal:</b> El abdomen se expande notablemente.</li>
+            <li><b>Comportamiento:</b> Pueden volverse agresivos y comienzan a construir un nido con materiales disponibles.</li>
+            <li><b>Incremento en el apetito:</b> Comerán más debido a la gestación.</li>
+        </ul>
+
+        <b>Aves</b>
+        <ul>
+            <li><b>Signos visibles:</b> No hay signos visibles de "embarazo".</li>
+            <li><b>Huevos fértiles:</b> Si los huevos son fértiles permanecera más tiempo en el nido.</li>
+        </ul>
+        </div>
+        
+        <button onclick="showContent('gestacion')">Regresar</button>
+    </section>
+                <!-- Sección Aves -->
+    <section id="tercerap" class="section content">
+        <h2>Una dieta adecuada durante la gestación dara como resultado unas crias grandes y fuertes</h2>
+      <img src="img/comida.jpg" alt="Mascotas gestantes alimentándose">
+
+        <b>Perros y Gatos</b>
+        <ul>
+            <li><b>Alimento especializado:</b> A partir de la mitad de la gestación, usa alimento para madres gestantes o lactantes.</li>
+            <li><b>Aumento de comida:</b> Incrementa la cantidad de comida un 25-50% durante las últimas semanas.</li>
+            <li><b>Agua fresca:</b> Proporciónales agua limpia y fresca constantemente.</li>
+        </ul>
+
+        <b>Hámsters</b>
+        <ul>
+            <li><b>Proteínas:</b> Incluye proteínas como huevo cocido y pequeñas cantidades de pollo cocido.</li>
+            <li><b>Vegetales frescos:</b> Proporciona zanahorias, espinacas u otros vegetales seguros en pequeñas cantidades.</li>
+            <li><b>Agua y comida:</b> Asegúrate de que siempre tengan suficiente agua y comida disponible.</li>
+        </ul>
+
+        <b>Aves</b>
+        <ul>
+            <li><b>Calcio y proteínas:</b> Incrementa alimentos como cáscaras de huevo trituradas, semillas y frutas frescas.</li>
+            <li><b>Agua fresca:</b> Mantén el agua fresca siempre disponible.</li>
+        </ul>
+
+        </div>
+        
+        <button onclick="showContent('gestacion')">Regresar</button>
+    </section>
+                    <!-- Sección Aves -->
+    <section id="cuartap" class="section content">
+        <h2>Mantener cómoda a tu mascota facilitara su labor de parto</h2>
+      <img src="img/preparacion.jpg" alt="Mascotas preparándose para el parto">
+
+        <b>Perros y Gatos</b>
+        <ul>
+            <li><b>Área tranquila:</b> Crea un espacio cómodo con mantas o toallas limpias donde puedan parir.</li>
+            <li><b>Evitar distracciones:</b> Minimiza ruidos fuertes y distracciones para mantener un ambiente calmado.</li>
+            <li><b>Supervisión:</b> Mantente cerca para observar, pero evita intervenir a menos que sea necesario.</li>
+        </ul>
+
+        <b>Hámsters</b>
+        <ul>
+            <li><b>Material para el nido:</b> Proporciona papel higiénico o viruta no tóxica para que construyan un nido cómodo.</li>
+            <li><b>Evitar manipulación:</b> No los manipules ni limpies la jaula cerca de la fecha de parto para reducir el estrés.</li>
+        </ul>
+
+        <b>Aves</b>
+        <ul>
+            <li><b>Nido adecuado:</b> Coloca un nido apropiado dentro de la jaula para que puedan usarlo cómodamente.</li>
+            <li><b>Entorno seguro:</b> Asegúrate de que el lugar sea tranquilo y esté libre de depredadores o ruidos fuertes.</li>
+        </ul>
+        </div>        
+        <button onclick="showContent('gestacion')">Regresar</button>
+    </section>
+                        <!-- Sección Aves -->
+    <section id="quintap" class="section content">
+        <h2>Saber qué hacer durante un parto complicado es de gran ayuda</h2>
+<img src="img/complicaciones.jpg" alt="Cuidados para mascotas durante el parto">
+
+        <b>Perros y Gatos</b>
+        <ul>
+            <li><b>Intervalo entre crías:</b> Consulta al veterinario si pasan más de 2 horas entre el nacimiento de cada cría.</li>
+            <li><b>Contracciones intensas:</b> Llama al veterinario si las contracciones duran más de 30 minutos sin que nazca una cría.</li>
+            <li><b>Secreciones anormales:</b> Busca atención inmediata si hay secreciones verdes o rojas en exceso.</li>
+        </ul>
+
+        <b>Hámsters</b>
+        <ul>
+            <li><b>Evitar el estrés:</b> El estrés puede interrumpir el parto o llevar a que la madre rechace o dañe a las crías.</li>
+            <li><b>Problemas evidentes:</b> Consulta a un veterinario si notas alguna complicación durante el parto.</li>
+        </ul>
+
+        <b>Aves</b>
+        <ul>
+            <li><b>Distocia (problemas para poner huevos):</b> Busca ayuda veterinaria si la hembra muestra sintomas anormales.</li>
+        </ul>
+            </div>    
+        <button onclick="showContent('gestacion')">Regresar</button>
+    </section>
+                            <!-- Sección Aves -->
+    <section id="sextap" class="section content">
+        <h2>Consiente a la nueva madre y a sus pequeños con dulces cuidados</h2>
+ <img src="img/crias.jpg" alt="Cuidado de las crías después del parto">
+
+        <b>Perros y Gatos</b>
+        <ul>
+            <li><b>Alimentación temprana:</b> Asegúrate de que las crías se alimenten pronto, ya que el calostro es crucial para su inmunidad.</li>
+            <li><b>Ambiente adecuado:</b> Mantén un área cálida y tranquila para la madre y las crías.</li>
+            <li><b>Atención a la madre:</b> Proporciona a la madre comida y agua en abundancia para su recuperación.</li>
+        </ul>
+
+        <b>Hámsters</b>
+        <ul>
+            <li><b>Evitar manipulación:</b> No toques a las crías ni el nido durante las primeras dos semanas para evitar que la madre las rechace.</li>
+            <li><b>Alimentación extra:</b> Asegúrate de proporcionar alimento y agua extra para la madre.</li>
+        </ul>
+
+        <b>Aves</b>
+        <ul>
+            <li><b>Mantenimiento del nido:</b> Mantén el nido limpio y a una temperatura adecuada para los polluelos.</li>
+            <li><b>Alimentación de la madre:</b> Proporciona alimentos ricos en calcio y proteínas a la madre para que pueda alimentar a los polluelos.</li>
+        </ul>
+        </div>    
+        <button onclick="showContent('gestacion')">Regresar</button>
+    </section>
+
+
+    <!-- Sección Juguetes Sustentables -->
+    <section id="juguetes" class="section content">
+        <h2>Juguetes Sustentables</h2>
+        <p>Tutoriales Sencillos para darle Diversión a tu Macota.</p>
+        <img src="img/juguetes.jpg" alt="Juguetes Sustentables">
+        <div>
+            <button onclick="showContent('gatosjuguetes')">Gatos</button>
+            <button onclick="showContent('perrosjuguetes')">Perros</button>
+            <button onclick="showContent('hamsterjuguetes')">Hámsters</button>
+            <button onclick="showContent('avesjuguetes')">Aves</button>
+        </div>
+    </section>
+
+   <!-- Sección Gatos -->
+<section id="gatosjuguetes" class="section content">
+    <h2>Gatos</h2>
+    <img src="img/juguetegato.jpg" alt="Imagen de salud de mascotas">
+    <div>
+        <button onclick="showContent('rascador')">Rascador de Carton</button>
+        <button onclick="showContent('comedero')">Dispensador de Alimento</button>
+        <button onclick="showContent('raton')">Ratón de Tela</button>
+        <button onclick="showContent('casagato')">Casa de Cartón</button>
+        <button onclick="showContent('juguetes')">Regresar</button>
+    </div>
+</section>
+
+<!-- Sección rascador -->
+<section id="rascador" class="section content">
+    <h2>Rascador de Cartón</h2>
+    <img src="img/rascador.jpg" alt="Gato">
+    <h3>Rascador Casero para Gatos</h3>
+
+    <h4>Materiales</h4>
+    <ul>
+        <li>Cola o silicona líquida</li>
+        <li>Cartón</li>
+        <li>Cinta adhesiva</li>
+        <li>Corcho (opcional)</li>
+    </ul>
+
+    <h4>Pasos a seguir</h4>
+    <ol>
+        <li>Corta varias piezas de cartón que tengan siempre un mismo ancho, por ejemplo, de 10 centímetros.</li> 
+        <li>Debes respetar esta medida para que quede a la misma altura.</li>
+        <li>Empieza a enrollar las tiras de cartón sobre sí mismas y utiliza la cola para ir fijándolo.</li>
+        <li>Cuando acabes de utilizar una tira, antes de poner la siguiente, utiliza la cinta adhesiva elegida para que no se desmonte.</li>
+        <li>Sigue agrandando el rascador hasta conseguir el tamaño deseado.</li>
+        <li>Fija bien el tramo final con cola para evitar que se abra.</li>
+        <li>Finalmente, puedes decorarlo con pintura o como nosotros, con corcho. ¡Tú eliges!</li>
+    </ol>
+</div>
+    <button onclick="showContent('gatosjuguetes')">Regresar</button>
+</section>
+
+    <!-- Sección Comedero -->
+<section id="comedero" class="section content">
+    <h2>Juguete y Dispensador de Alimento para Gatos</h2>
+    <img src="img/dispensagato.png" alt="Dispensador para Gatos">
+    
+    <p>Estimula su inteligencia y su actividad física y resulta positivo para gatos con ansiedad o estrés. </p>
+
+    <h4>Materiales</h4>
+    <ul>
+        <li>Botella</li>
+        <li>Bolígrafo</li>
+        <li>Cúter</li>
+        <li>Lija</li>
+        <li>Premios o comida para gatos</li>
+        <li>Como extra podemos añadir papel de periódico o de colores para decorar, plumas, juguetes, un cascabel... ¡Todas las opciones son válidas!</li>
+    </ul>
+
+    <h4>Pasos a seguir</h4>
+    <ol>
+        <li>Dibuja pequeñas redondas o cuadrados en la botella de plástico.</li>
+        <li>Recorta con el cúter las marcas realizadas.</li>
+        <li>Lija los bordes que han sido recortados para evitar que el gato se haga daño.</li>
+        <li>Decora a tu gusto.</li>
+        <li>Llena de comida e invita a tu gato a jugar.</li>
+    </ol>
+</div>
+        <button onclick="showContent('gatosjuguetes')">Regresar</button>
+    </section>
+
+<!-- Sección Ratón de Tela-->
+<section id="raton" class="section content">
+    <h2>Ratón de Tela</h2>
+    <img src="img/ratontela.jpg" alt="Raton de Tela">
+
+    <h4>Materiales</h4>
+    <ul>
+        <li>Tela de algodón o fieltro.</li>
+        <li>Relleno (algodón, tela reciclada).</li>
+        <li>Hilo y aguja.</li>
+        <li>Botón o tela para hacer los ojos (opcional).</li>
+    </ul>
+
+    <h4>Instrucciones</h4>
+    <ol>
+        <li><strong>Corta la forma del ratón:</strong>
+            <ul>
+                <li>Dibuja y corta dos formas de ratón de tela (puedes usar una plantilla) y un par de orejas pequeñas.</li>
+            </ul>
+        </li>
+        <li><strong>Cose las piezas:</strong>
+            <ul>
+                <li>Une las dos piezas de tela dejando un pequeño espacio para el relleno y cose los bordes.</li>
+            </ul>
+        </li>
+        <li><strong>Rellena el ratón:</strong>
+            <ul>
+                <li>Llena la forma con el material de relleno.</li>
+            </ul>
+        </li>
+        <li><strong>Cierra y decora:</strong>
+            <ul>
+                <li>Cose la abertura para cerrar la forma.</li>
+                <li>Agrega un botón pequeño o una pieza de tela como ojo y una cuerda o hilo para hacer la cola.</li>
+            </ul>
+        </li>
+        <li><strong>Listo para jugar:</strong>
+            <ul>
+                <li>Tu gato disfrutará de este juguete de tela que puede golpear y atrapar.</li>
+            </ul>
+        </li>
+    </ol>
+</div>
+        <button onclick="showContent('gatosjuguetes')">Regresar</button>
+    </section>
+
+<!-- Sección Casa de Cartón -->
+<section id="casagato" class="section content">
+    <h2>Casa de Cartón</h2>
+    <img src="img/casagato.png" alt="Casa de Cartón">
+    <h4>Materiales</h4>
+    <ul>
+        <li>Cola o silicona líquida</li>
+        <li>Bolígrafo</li>
+        <li>Regla</li>
+        <li>Caja de cartón</li>
+        <li>Pintura (opcional)</li>
+    </ul>
+
+    <h4>Pasos a seguir</h4>
+    <ol>
+        <li><strong>Recorta las pestañas:</strong>
+            <ul>
+                <li>Recorta las pestañas de la caja de cartón de la base sobrantes para que no sean incómodas para tu gato.</li>
+                <li>Después, pega con cola para que se mantenga unido.</li>
+            </ul>
+        </li>
+        <li><strong>Corta los lados superiores:</strong>
+            <ul>
+                <li>Corta 5 centímetros por cada lado superior de la caja, con la intención de hacer todas las pestañas superiores más largas.</li>
+            </ul>
+        </li>
+        <li><strong>Dale forma al techo:</strong>
+            <ul>
+                <li>Utiliza un cartón doblado en forma de "V" para dar forma al "techo" y ayudar a pegar las dos pestañas laterales.</li>
+            </ul>
+        </li>
+        <li><strong>Marca y recorta la forma de la casa:</strong>
+            <ul>
+                <li>Con la ayuda del bolígrafo, marca en las pestañas delantera y trasera la forma de la casa, recorta y pega.</li>
+            </ul>
+        </li>
+        <li><strong>Decora y personaliza:</strong>
+            <ul>
+                <li>Después, puedes añadir ventanas, pintura, decoración y hasta un cojín dentro de la caja. ¡Las opciones son ilimitadas!</li>
+            </ul>
+        </li>
+    </ol>
+</div>
+    <button onclick="showContent('gatosjuguetes')">Regresar</button>
+</section>
+<!-- Sección Perros -->
+<section id="perrosjuguetes" class="section content">
+    <h2>Perros</h2>
+    <img src="img/perrojuguetes.jpg" alt="Juguetes y camas para perros">
+    <div>
+        <button onclick="showContent('camita')">Camita hecha con un suéter</button>
+        <button onclick="showContent('juguetetela')">Juguete de tira de tela</button>
+        <button onclick="showContent('comederoperro')">Dispensador de Alimento</button>
+        <button onclick="showContent('casamadera')">Casa de madera</button>
+        <button onclick="showContent('juguetes')">Regresar</button>
+    </div>
+</section>
+
+<!-- Sección Camita hecha con un suéter -->
+<section id="camita" class="section content">
+    <h2>Camita hecha con un suéter</h2>
+    <img src="img/sueter.jpg" alt="Camita para perros">
+
+    <h4>Materiales</h4>
+    <ul>
+        <li>Un suéter viejo (preferiblemente de lana o algodón).</li>
+        <li>Relleno (algodón, tela reciclada, o cojines viejos).</li>
+        <li>Aguja e hilo o máquina de coser (opcional).</li>
+        <li>Cinta adhesiva o alfileres.</li>
+    </ul>
+
+    <h4>Instrucciones</h4>
+    <ol>
+        <li><strong>Preparar el suéter:</strong>
+            <ul>
+                <li>Lava el suéter si es necesario y asegúrate de que esté limpio y seco.</li>
+                <li>Extiende el suéter sobre una superficie plana y alisa cualquier arruga.</li>
+            </ul>
+        </li>
+        <li><strong>Formar la base de la camita:</strong>
+            <ul>
+                <li>Dobla el suéter de manera que la parte inferior quede en la parte superior.</li>
+                <li>Si tiene cuello alto, dóblalo o recórtalo para mayor comodidad.</li>
+            </ul>
+        </li>
+        <li><strong>Coser los extremos:</strong>
+            <ul>
+                <li>Junta los extremos del suéter para cerrar los lados y forma una "cuna". Puedes coserlos a mano o con máquina de coser.</li>
+            </ul>
+        </li>
+        <li><strong>Añadir el relleno:</strong>
+            <ul>
+                <li>Llena la camita con el material de relleno elegido.</li>
+                <li>Ajusta el relleno para que quede uniforme.</li>
+            </ul>
+        </li>
+        <li><strong>Cerrar la camita:</strong>
+            <ul>
+                <li>Cose o dobla los extremos abiertos y asegúralos con cinta o alfileres.</li>
+            </ul>
+        </li>
+        <li><strong>Ajustes finales:</strong>
+            <ul>
+                <li>Acomoda la camita y agrega una manta suave o un cojín adicional.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <button onclick="showContent('perrosjuguetes')">Regresar</button>
+</section>
+
+<!-- Sección Juguete de tira de tela para masticar -->
+<section id="juguetetela" class="section content">
+    <h2>Juguete de tira de tela para masticar</h2>
+    <img src="img/juguetetela.jpg" alt="Juguete de tira de tela">
+
+    <h4>Materiales</h4>
+    <ul>
+        <li>Tela vieja (camiseta, toalla, o tela de retazos).</li>
+        <li>Tijeras.</li>
+        <li>Hilo resistente (opcional).</li>
+    </ul>
+
+    <h4>Instrucciones</h4>
+    <ol>
+        <li><strong>Corta la tela:</strong> En tiras largas de 1.5 a 2 cm de ancho y 30-40 cm de largo.</li>
+        <li><strong>Une las tiras:</strong> Junta tres o más tiras y haz un nudo en un extremo.</li>
+        <li><strong>Trenza la tela:</strong> Trenza las tiras como si estuvieras trenzando un cabello.</li>
+        <li><strong>Asegura el juguete:</strong> Haz un nudo adicional en los extremos o cóselos.</li>
+        <li><strong>Listo para jugar:</strong> Tu mascota podrá masticar y jugar con el juguete.</li>
+    </ol>
+
+    <button onclick="showContent('perrosjuguetes')">Regresar</button>
+</section>
+ 
+<!-- Sección Comedero -->
+<section id="comederoperro" class="section content">
+    <h2>Juguete y Dispensador de Alimento</h2>
+    <img src="img/alimentoperro.jpg" alt="Dispensador para Alimento">
+    
+    <p>Estimula su inteligencia y su actividad física y resulta divertido para los perritos </p>
+
+    <h4>Materiales</h4>
+    <ul>
+        <li>Botella</li>
+        <li>Bolígrafo</li>
+        <li>Cúter</li>
+        <li>Lija</li>
+        <li>Premios o comida para perros</li>
+        <li>Como extra podemos añadir papel de periódico o de colores para decorar, plumas, juguetes... ¡Todas las opciones son válidas!</li>
+    </ul>
+
+    <h4>Pasos a seguir</h4>
+    <ol>
+        <li>Dibuja pequeñas redondas o cuadrados en la botella de plástico.</li>
+        <li>Recorta con el cúter las marcas realizadas.</li>
+        <li>Lija los bordes que han sido recortados para evitar que el gato se haga daño.</li>
+        <li>Decora a tu gusto.</li>
+        <li>Llena de comida e invita a tu amigo a jugar.</li>
+    </ol>
+</div>
+        <button onclick="showContent('perrosjuguetes')">Regresar</button>
+    </section>
+<!-- Sección Casa para mascotas hecha con tarimas de madera -->
+<section id="casamadera" class="section content">
+    <h2>Casa para mascotas hecha con tarimas de madera</h2>
+    <img src="img/perritocasa.jpg" alt="Casa de madera para perros">
+
+    <h4>Materiales</h4>
+    <ul>
+        <li>Tarimas de madera recicladas.</li>
+        <li>Lija o máquina lijadora.</li>
+        <li>Tornillos o clavos.</li>
+        <li>Martillo o destornillador.</li>
+        <li>Sierra.</li>
+        <li>Cinta métrica.</li>
+        <li>Pintura o barniz no tóxico (opcional).</li>
+        <li>Hilo o cuerda para decorar (opcional).</li>
+    </ul>
+
+    <h4>Instrucciones</h4>
+    <ol>
+        <li><strong>Preparar las tarimas:</strong> Limpia y lija las tarimas para suavizar bordes y superficies.</li>
+        <li><strong>Medir y cortar:</strong> Determina el tamaño de la casa y corta las piezas necesarias.</li>
+        <li><strong>Armar la base:</strong> Une las piezas de la base con tornillos o clavos.</li>
+        <li><strong>Construir las paredes:</strong> Fija las paredes y corta una abertura para la entrada.</li>
+        <li><strong>Colocar el techo:</strong> Asegura el techo con tornillos o clavos.</li>
+        <li><strong>Pintar o decorar:</strong> Aplica pintura o barniz y agrega detalles decorativos (opcional).</li>
+        <li><strong>Verificar y probar:</strong> Revisa que no haya partes peligrosas y coloca la casa en un lugar adecuado.</li>
+    </ol>
+
+    <button onclick="showContent('perrosjuguetes')">Regresar</button>
+</section>
+
+<!-- Sección Hamsters -->
+<section id="hamsterjuguetes" class="section content">
+    <h2>Hámsters</h2>
+    <img src="img/hamsterju.jpg" alt="Juguetes para hámsters">
+    <div>
+        <button onclick="showContent('escalera')">Escalera de Palitos</button>
+        <button onclick="showContent('tuneles')">Tuneles de Cartón</button>
+        <button onclick="showContent('casa')">Casa</button>
+        <button onclick="showContent('laberinto')">Laberinto</button>
+        <button onclick="showContent('juguetes')">Regresar</button>
+    </div>
+</section>
+
+<!-- Sección Escalera para hámsteres -->
+<section id="escalera" class="section content">
+    <h2>Escalera para hámster</h2>
+    <img src="img/escalera.jpg" alt="Escalera para hámster">
+
+    <h4>Materiales</h4>
+    <ul>
+        <li>Varios palitos de chupete o paleta.</li>
+        <li>Pegamento no tóxico.</li>
+    </ul>
+
+    <h4>Instrucciones</h4>
+    <ol>
+        <li><strong>Reúne los palitos de chupete:</strong> La cantidad dependerá de qué tan alta quieras que sea la escalera.</li>
+        <li><strong>Enjuaga los palitos:</strong> Lava los palitos para quitar residuos de comida y evitar que se queden pegajosos.</li>
+        <li><strong>Pega los palitos:</strong> Usa pegamento no tóxico para unir los palitos de chupete, asegurándote de que no sea peligroso para el hámster.</li>
+        <li><strong>Coloca la escalera en la jaula:</strong>
+            <ul>
+                <li>Coloca la escalera desde el piso de la jaula hasta otro juguete.</li>
+                <li>También puedes usarla como un puente entre otros juguetes, como cajas de cartón o cajas de leche.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <button onclick="showContent('hamsterjuguetes')">Regresar</button>
+</section>
+
+<!-- Sección Túneles para hámsteres -->
+<section id="tuneles" class="section content">
+    <h2>Túneles para hámster</h2>
+    <img src="img/tunel.jpg" alt="Túneles para hámsteres">
+
+    <h4>Materiales</h4>
+    <ul>
+        <li>Tubos de papel higiénico.</li>
+        <li>Viruta.</li>
+        <li>Cajas de cartón pequeñas.</li>
+        <li>Instrumento para cortar (cuchillo, tijeras o cortador de cajas).</li>
+    </ul>
+
+    <h4>Instrucciones</h4>
+    <ol>
+        <li><strong>Corta agujeros en las cajas:</strong> Haz agujeros circulares en las cajas de cartón para encajar los tubos de papel higiénico.</li>
+        <li><strong>Inserta los tubos:</strong> Coloca los tubos de papel higiénico en los agujeros. Asegúrate de que encajen bien, y si es necesario, agranda los agujeros.</li>
+        <li><strong>Asegura los tubos:</strong> Usa pegamento no tóxico para fijar los tubos a las cajas de cartón.</li>
+        <li><strong>Cubre el túnel con viruta:</strong> Para hacerlo más desafiante para el hámster, cubre el túnel con viruta, dejando un espacio libre para la entrada y salida.</li>
+    </ol>
+
+    <button onclick="showContent('hamsterjuguetes')">Regresar</button>
+</section>
+
+<!-- Sección Casa para hámsteres -->
+<section id="casa" class="section content">
+    <h2>Casa para hámster</h2>
+    <img src="img/casahamster.jpg" alt="Casa para hámsteres">
+
+    <h4>Materiales</h4>
+    <ul>
+        <li>Madera no tratada o cartón fuerte.</li>
+        <li>Pegamento no tóxico o cinta adhesiva resistente.</li>
+        <li>Clavos pequeños o tornillos (si usas madera).</li>
+        <li>Tela o aserrín para el interior.</li>
+    </ul>
+
+    <h4>Instrucciones</h4>
+    <ol>
+        <li><strong>Corta las piezas:</strong> Usa madera o cartón para cortar las piezas de la casa, incluyendo un piso y paredes con una pequeña entrada.</li>
+        <li><strong>Arma la estructura:</strong> Une las piezas con pegamento, cinta adhesiva o clavos si usas madera.</li>
+        <li><strong>Lija los bordes (opcional):</strong> Si usas madera, lija los bordes para evitar que el hámster se lastime.</li>
+        <li><strong>Decora (opcional):</strong> Puedes pintar la casa con pintura no tóxica y dejarla secar antes de colocarla en la jaula.</li>
+        <li><strong>Prepara el interior:</strong> Añade tela suave o aserrín para crear un lugar cómodo para que tu hámster descanse.</li>
+        <li><strong>Coloca la casa:</strong> Ubica la casa en la jaula del hámster, asegurándote de que esté segura y cómoda.</li>
+    </ol>
+
+    <button onclick="showContent('hamsterjuguetes')">Regresar</button>
+</section>
+
+<!-- Sección Laberinto para hámsteres -->
+<section id="laberinto" class="section content">
+    <h2>Laberinto para hámster</h2>
+    <img src="img/laberinto.jpg" alt="Laberinto para hámsteres">
+
+    <h4>Materiales</h4>
+    <ul>
+        <li>Varios tubos de papel higiénico.</li>
+        <li>Pegamento no tóxico.</li>
+    </ul>
+
+    <h4>Instrucciones</h4>
+    <ol>
+        <li><strong>Coloca los tubos:</strong> Coloca los tubos uno dentro de otro para formar el laberinto. Asegúrate de que no estén demasiado ajustados.</li>
+        <li><strong>Une los tubos:</strong> Usa pegamento no tóxico para pegar los tubos entre sí y formar el laberinto.</li>
+        <li><strong>Distribuye los túneles:</strong> Coloca los tubos en diferentes direcciones dentro de la jaula, creando un laberinto desafiante.</li>
+        <li><strong>Coloca un premio:</strong> Coloca un premio al final del laberinto para motivar a tu hámster a moverse rápidamente.</li>
+    </ol>
+
+    <button onclick="showContent('hamsterjuguetes')">Regresar</button>
+</section>
+
+<!-- Sección Aves -->
+<section id="avesjuguetes" class="section content">
+    <h2>Aves</h2>
+    <img src="img/avesjuguetes.jpg" alt="Juguetes para aves">
+    <div>
+        <button onclick="showContent('comederoaves')">Comedero Reciclado con Tubo de Cartón</button>
+        <button onclick="showContent('casaaves')">Casa para Pájaros Reciclada</button>
+        <button onclick="showContent('tapajuguete')">Bebedero</button>
+        <button onclick="showContent('interactivo')">Casa con comida</button>
+        <button onclick="showContent('juguetes')">Regresar</button>
+    </div>
+</section>
+
+<!-- Sección Comedero Reciclado con Tubo de Cartón -->
+<section id="comederoaves" class="section content">
+    <h2>Comedero Reciclado con Tubo de Cartón</h2>
+    <img src="img/comederoaves.jpg" alt="Comedero para aves con tubo de cartón">
+
+    <h4>Materiales</h4>
+    <ul>
+        <li>Tubos de cartón (como los de papel higiénico)</li>
+        <li>Cuerda o hilo</li>
+        <li>Semillas o golosinas para aves</li>
+    </ul>
+
+    <h4>Instrucciones</h4>
+    <ol>
+        <li><strong>Limpia la Botella:</strong> Limpia una botella plastica .</li>
+        <li><strong>Rellena el tubo:</strong> Coloca semillas o golosinas para aves dentro de cada sección.</li>
+        <li><strong>Haz agujeros en los extremos:</strong> Haz agujeros en ambos extremos de la botella y pasa un trozo de cuerda, coloca objetos donde el ave se pueda posar y comer</li>
+        <li><strong>Cuélgalo en la jaula:</strong> Ata un nudo en los extremos de la cuerda para colgar el comedero en la jaula.</li>
+    </ol>
+
+    <button onclick="showContent('avesjuguetes')">Regresar</button>
+</section>
+
+<!-- Sección Casa para Pájaros Reciclada -->
+<section id="casaaves" class="section content">
+    <h2>Casa para Pájaros Reciclada</h2>
+    <img src="img/avescasa.jpg" alt="Casa para pájaros reciclada">
+
+    <h4>Materiales</h4>
+    <ul>
+        <li>Cajas de cartón recicladas</li>
+        <li>Cuerda o hilo</li>
+        <li>Hojas secas, virutas de madera, o paja</li>
+    </ul>
+
+    <h4>Instrucciones</h4>
+    <ol>
+        <li><strong>Forma la estructura:</strong> Corta las cajas de cartón para crear la estructura de la casa.</li>
+        <li><strong>Llena la casa:</strong> Rellena la caja con materiales como hojas secas o virutas de madera.</li>
+        <li><strong>Perfora agujeros:</strong> Haz agujeros en los lados de la caja y pasa una cuerda para colgar la casa.</li>
+        <li><strong>Opcional:</strong> Puedes pintar la casa con pintura no tóxica si lo deseas.</li>
+    </ol>
+
+    <button onclick="showContent('avesjuguetes')">Regresar</button>
+</section>
+
+<!-- Sección Juguete con Tapas de Botellas -->
+<section id="tapajuguete" class="section content">
+    <h2>Bebedero</h2>
+    <img src="img/bebedero.jpg" alt="Juguete con tapas de botellas para aves">
+
+    <h4>Materiales</h4>
+    <ul>
+        <li>Una botella plastica</li>
+        <li>Cuerda o hilo fuerte</li>
+        
+    </ul>
+
+    <h4>Instrucciones</h4>
+    <ol>
+        <li><strong>Corta la botella:</strong> Haz un corte en la parte inferior de la botella para obtener dos piezas.</li>
+        <li><strong>Agujeros:</strong> A la parte de abajo de la botella hazle 4 agujeros por los cuales pasa un hilo, haz dos agujeros a la parte superior de la botella para colgarla</li>
+        <li><strong>Enlaza las partes:</strong> Con la cuerda ata la parte de abajo de la botella a la boca de esta.</li>
+        <li><strong>Cuélgalo:</strong> Ata el bebedero a la jaula o a un árbol.</li>
+    </ol>
+
+    <button onclick="showContent('avesjuguetes')">Regresar</button>
+</section>
+
+<!-- Sección Juguete Interactivo de Cartón -->
+<section id="interactivo" class="section content">
+    <h2>Casa con comida</h2>
+    <img src="img/lata.jpg" alt="Casa con comida">
+
+    <h4>Materiales</h4>
+    <ul>
+        <li>Lata limpia</li>
+        <li>Cuerda o hilo</li>
+    </ul>
+
+    <h4>Instrucciones</h4>
+    <ol>
+        <li><strong>Selecciona una lata:</strong> Selecciona y limpia una lata.</li>
+        <li><strong>Enlaza las piezas:</strong> Amarra con la cuerda la lata</li>
+        <li><strong>Cuélgalo:</strong> Ata los extremos de la cuerda y cuélgalo para que las aves puedan jugar con él.</li>
+    </ol>
+
+    <button onclick="showContent('avesjuguetes')">Regresar</button>
+</section>
+
+
+    <!-- Sección Noticias -->
+    <section id="noticias" class="section content">
+        <h2>Noticias</h2>
+        <p>Entérate de las últimas novedades del mundo animal.</p>
+        <img src="img/anuncio.jpg" alt="Campañas de vacunación">
+        <h2>Adopciones</h2>
+        <img src="img/adopcion.jpg" alt="Adopta una sonrisa">
+        <img src="img/adopcion2.jpg" alt="Adopta un nuevo amigo">
+        <h2>¡Se Busca!</h2>
+        <img src="img/sebusca.jpg" alt="Ayudenos a ubicarla">
+
+        <h2>Si deseas anunciar la adopción o búsqueda de un hogar para alguna mascota...</h2>
+    <p>Comunícate con nosotros</p>
+    <p>Correo electrónico: <h2>huellitasvip@gmail.com</h2></p>
+    <p>Número telefónico: <h2>7225276159</h2></p>
+    <h2>Por un aporte de $50MXN podrás publicar tu anuncio y ayudar a encontrar un nuevo hogar para tu compañero peludo...</h2>
+
+    </section>
+    
+<!-- Sección Foro -->
+<section id="foro" class="section content">
+    <h2>Foro</h2>
+    <div id="disqus_thread"></div>
+</section>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <p>&copy; 2024 Huellitas VIP. Todos los derechos reservados.</p>
+    </footer>
+
+<!-- Sección IA -->
+<section id="ia" class="section content">
+    <h2>Asistente de IA</h2>
+    <p>¡Hola! Soy tu asistente virtual. Debido a que estoy en fase Beta respondo a palabras clave ¿En qué puedo ayudarte hoy?</p>
+    <h3>Palabras clave que puedes utilizar:<br></h3>
+        <br>
+        
+
+    <!-- Palabras clave para temas -->
+    <div id="palabras-clave">
+        
+        <ul id="lista-palabras-clave">
+            <!-- Las palabras clave se llenarán dinámicamente con JavaScript -->
+        </ul>
+    </div>
+
+    <!-- Chat de IA -->
+        <div class="ia-container" id="ia-chat">
+            <div id="chat-box" class="message"></div>
+            <textarea id="chatbox" placeholder="Escribe tu pregunta..."></textarea>
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+    </section>
+
+
+
+
+<script>
+    function showContent(id) {
+    // Ocultar todas las secciones de contenido
+    const sections = document.querySelectorAll('.content');
+    sections.forEach(section => {
+        section.style.display = 'none'; // Oculta todas las secciones
+    });
+
+    // Mostrar solo la sección seleccionada
+    const contentToShow = document.getElementById(id);
+    if (contentToShow) {
+        contentToShow.style.display = 'block'; // Muestra la sección correspondiente
+    }
+
+    // Opcional: Asegúrate de que no queden botones o elementos "flotando"
+    const backButtons = document.querySelectorAll('.back-button');
+    backButtons.forEach(button => {
+        button.style.display = 'none'; // Oculta todos los botones de regresar
+    });
+}
+
+
+
+// Lista de palabras clave y respuestas asociadas
+
+const palabrasClave = {
+
+    "alimentación": ["dieta", "alimentos tóxicos", "frecuencia comida", "comida casera"],
+    "salud": ["vacunas", "enfermedades comunes", "parásitos", "ejercicio", "emergencia"],
+    "higiene": ["baño", "corte de uñas", "dientes", "productos de limpieza"],
+    "entrenamiento": ["arenero", "comportamiento y socialización", "juegos"],
+    "reproducción": ["esterilizar"],
+    "adopción": ["primeros cuidados", "preparar casa"],
+    "otros": ["extraviada", "adaptación", "mascota anciana"]
+};
+
+// Función para obtener la respuesta de la IA según la consulta del usuario
+function getAIResponse(userMessage) {
+    // Convertir el mensaje del usuario a minúsculas para una búsqueda insensible a mayúsculas
+    userMessage = userMessage.toLowerCase();
+
+    // Comprobar si el mensaje contiene alguna palabra clave de las categorías
+    for (let categoria in palabrasClave) {
+        for (let palabra of palabrasClave[categoria]) {
+            if (userMessage.includes(palabra)) {
+                return obtenerRespuesta(categoria, palabra);
+            }
+        }
+    }
+
+    return "Lo siento, no tengo una respuesta para eso. ¿Te gustaría probar con otra palabra clave?";
+}
+
+// Función para obtener la respuesta según la categoría y palabra clave
+function obtenerRespuesta(categoria, palabra) {
+    switch (categoria) {
+        case "alimentación":
+            if (palabra === "dieta") {
+                return `
+                Dieta:<br>
+                - **Perros**: Dieta equilibrada con proteína, carbohidratos, grasas saludables, y micronutrientes.<br>
+                - **Gatos**: Alta en proteínas y grasas, con taurina y arginina esenciales.<br>
+                - **Hámsters**: Mezcla de semillas, frutas, verduras, y proteínas ocasionales (huevo cocido).<br>
+                - **Aves**: Depende de la especie. En general, semillas, frutas, verduras, y suplementos.<br>
+                `;
+            } else if (palabra === "alimentos tóxicos") {
+                return `
+                Alimentos tóxicos:<br>
+                - **Perros y gatos**: Chocolate, uvas, pasas, cebolla, ajo, y aguacate.<br>
+                - **Hámsters**: Cítricos, cebolla, ajo, almendras amargas.<br>
+                - **Aves**: Aguacate, cafeína, chocolate, y alimentos salados.<br>
+                `;
+            } else if (palabra === "frecuencia comida") {
+                return `
+                Frecuencia comida:<br>
+                - **Perros y gatos adultos**: 2 veces al día.<br>
+                - **Hámsters**: 1 vez al día, con snacks ocasionales.<br>
+                - **Aves**: Varias veces al día, comida fresca siempre disponible.<br>
+                `;
+            } else if (palabra === "comida casera") {
+                return `
+                Comida casera:<br>
+                Evitar alimentos procesados; priorizar comida cocida y balanceada.<br>
+                `;
+            }
+            break;
+        case "salud":
+            if (palabra === "vacunas") {
+                return `
+                Vacunas:<br>
+                - **Perros**: Rabia, parvovirus, moquillo, hepatitis.<br>
+                - **Gatos**: Rabia, leucemia felina, rinotraqueitis.<br>
+                - **Hámsters y aves**: No suelen requerir vacunas.<br>
+                `;
+            } else if (palabra === "enfermedades comunes") {
+                return `
+                Enfermedades comunes:<br>
+                - **Perros**: Moquillo, parvovirus, displasia de cadera.<br>
+                - **Gatos**: Leucemia felina, infecciones urinarias.<br>
+                - **Hámsters**: Infecciones respiratorias, abscesos.<br>
+                - **Aves**: Psitacosis, enfermedades respiratorias.<br>
+                `;
+            } else if (palabra === "parásitos") {
+                return `
+                Parásitos:<br>
+                - **Perros y gatos**: Pulgas, garrapatas, ácaros.<br>
+                - **Hámsters y aves**: Ácaros, aunque son menos comunes.<br>
+                `;
+            } else if (palabra === "ejercicio") {
+                return `
+                Ejercicio:<br>
+                - **Perros**: Paseos diarios según raza.<br>
+                - **Gatos**: Juegos con juguetes.<br>
+                - **Hámsters**: Rueda y túneles.<br>
+                - **Aves**: Espacio para volar o trepar.<br>
+                `;
+            } else if (palabra === "emergencia") {
+                return `
+                Emergencia:<br>
+                Saber identificar síntomas graves como letargo, vómitos, o dificultad para respirar e ir directamente por ayuda medica.<br>
+                `;
+            }
+            break;
+        case "higiene":
+            if (palabra === "baño") {
+                return `
+                Baño: <br>
+                - **Perros**: Cada 2-3 semanas.<br>
+                - **Gatos**: No se recomienda (ellos se limpian solos).<br>
+                - **Hámsters y aves**: Baños de arena o agua según la especie.<br>
+                `;
+            } else if (palabra === "corte de uñas") {
+                return `
+                Corte de uñas:<br>
+                - **Perros y gatos**: Cada 3-4 semanas.<br>
+                - **Hámsters y aves**: Solo si las uñas crecen en exceso.<br>
+                `;
+            } else if (palabra === "dientes") {
+                return `
+                Dientes:<br>
+                - **Perros y gatos**: Cepillado regular con pasta específica.<br>
+                - **Hámsters y aves**: Juguetes o bloques para desgastar dientes y pico.<br>
+                `;
+            } else if (palabra === "productos de limpieza") {
+                return `
+                Productos de limpieza:<br>
+                Usar productos específicos para mascotas; evitar los que contengan químicos tóxicos.<br>
+                `;
+            }
+            break;
+
+        // Continúa con las demás categorías (entrenamiento, reproducción, viajes, adopción, etc.) siguiendo el mismo formato.
+                case "entrenamiento":
+            if (palabra === "arenero") {
+                return `
+                Arenero:<br>
+                - **Perros**: Alfombrillas para cachorros.<br>
+                - **Gatos**: Limpieza diaria del arenero.<br>
+                `;
+            } else if (palabra === "comportamiento y socialización") {
+                return `
+                Comportamiento y socialización:<br>
+                - **Perros y gatos**: Exponer a nuevas personas y animales de forma positiva.<br>
+                - **Hámsters y aves**: Interactuar regularmente para reducir estrés.<br>
+                `;
+            } else if (palabra === "juegos") {
+                return `
+                Juegos y actividad:<br>
+                - **Perros y gatos**: Juguetes interactivos y de ejercicio.<br>
+                - **Hámsters y aves**: Ruedas, túneles, perchas y juguetes colgantes.<br>
+                `;
+            }
+            break;
+        case "reproducción":
+            if (palabra === "esterilizar") {
+                return `
+                Esterilizar/castrar:<br>
+                Recomendado en perros y gatos para evitar problemas de salud y controlar la población.<br>
+                `;
+            }
+            break;
+        case "adopción":
+            if (palabra === "primeros cuidados") {
+                return `
+                Primeros cuidados:<br>
+                Revisión veterinaria, establecer rutina alimenticia y de higiene.<br>
+                `;
+            } else if (palabra === "preparar casa") {
+                return `
+                Preparar casa:<br>
+                Asegurar espacio adecuado y libre de peligros.<br>
+                `;
+            }
+            break;
+        case "otros":
+            if (palabra === "extraviada") {
+                return `
+                Pérdida e identificación:<br>
+                Collares con placa y microchip en perros y gatos.<br>
+                `;
+            } else if (palabra === "adaptación") {
+                return `
+                Adaptación:<br>
+                Paciencia y consistencia en rutinas nuevas.<br>
+                `;
+            } else if (palabra === "mascota anciana") {
+                return `
+                Mascota anciana:<br>
+                Atención especial en salud, alimentación, y confort.<br>
+                `;
+            }
+            break;
+    }
+
+    return "Lo siento, no tengo una respuesta para eso. ¿Te gustaría probar con otra palabra clave?";
+}
+
+// Función para manejar el envío del mensaje
+function sendMessage() {
+    var userMessage = document.getElementById("chatbox").value;
+
+    // Si el usuario no escribió nada, no hacer nada
+    if (userMessage.trim() === "") {
+        return;
+    }
+
+    // Muestra el mensaje del usuario en el chat
+    var chatBox = document.getElementById("chat-box");
+    chatBox.innerHTML += `<div class="user-request">Tú: ${userMessage}</div>`;
+
+
+    // Llama a la función getAIResponse para obtener la respuesta
+    var aiResponse = getAIResponse(userMessage);
+
+    // Muestra la respuesta de la IA en el chat
+    chatBox.innerHTML += `<div class="ai-message">IA: ${aiResponse}</div>`;
+
+    // Limpia el campo de entrada del mensaje
+    document.getElementById("chatbox").value = "";
+
+    // Desplázate al final del chat para ver la última respuesta
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// Función para mostrar las palabras clave al cargar la página
+function mostrarPalabrasClave() 
+{
+    var listaPalabrasClave = document.getElementById("lista-palabras-clave");
+
+    // Limpiar la lista existente (en caso de que haya algún cambio dinámico)
+    listaPalabrasClave.innerHTML = "";
+
+    // Recorrer y agregar las palabras clave a la lista
+    for (let categoria in palabrasClave) {
+        var li = document.createElement("li");
+        li.textContent = categoria.charAt(0).toUpperCase() + categoria.slice(1) + ": " + palabrasClave[categoria].join(", ");
+        listaPalabrasClave.appendChild(li);
+    }
+}
+
+// Llamar a la función cuando la página cargue
+window.onload = function() {
+    mostrarPalabrasClave();
+};
+
+
+
+
+
+
+
+   (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://huellitas-vip.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</body>
+</html>
